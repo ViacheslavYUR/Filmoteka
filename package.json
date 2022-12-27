@@ -5,8 +5,7 @@
   "homepage": "https://github.com/CyresSmith/filmoteka.git",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /filmoteka/",
-    "deploy": "gh-pages -d dist"
+    "build": "parcel build src/*.html --public-url /Filmoteka"
   },
   "repository": {
     "type": "git",
@@ -24,7 +23,6 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
-    "gh-pages": "^4.0.0",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4"
