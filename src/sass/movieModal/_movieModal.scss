@@ -1,0 +1,103 @@
+@import './backdrop';
+
+.movieModal {
+  position: absolute;
+  display: flex;
+  gap: calc($gap / 2);
+  font-weight: 500;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 806px;
+  min-height: 558px;
+  padding: 40px 12px;
+  z-index: 888;
+  background-color: $background-color;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.movieModal__image,
+.movieModal__info {
+  width: calc((100% - $gap / 2) / 2);
+}
+
+.movieModal__image {
+}
+
+.movieModal__info {
+}
+
+.movieModal__table {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 0;
+  border-collapse: collapse;
+  line-height: 1.33;
+
+  & tbody {
+    text-align: left;
+  }
+}
+
+.padding-bottom-td {
+  padding-bottom: 8px;
+}
+
+.no-padding-td {
+  padding-bottom: 0px;
+}
+
+.movieModal__parameter {
+  color: $second-font-color;
+  width: 152px;
+}
+
+.movieModal__value {
+}
+
+.movieModal__caption {
+  font-size: 30px;
+  line-height: 1.17;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.movieModal__vote,
+.movieModal__votes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 16px;
+  border-radius: $border-radius;
+}
+
+.movieModal__vote {
+  color: $white;
+  background-color: $accent-color;
+}
+
+.movieModal__votes {
+  background-color: #f7f7f7;
+}
+
+.movieModal__description {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.movieModal__about {
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.movieModal__text {
+  line-height: 1.66;
+}
+
+.movieModal__btns {
+  display: flex;
+  gap: calc($gap / 2);
+}

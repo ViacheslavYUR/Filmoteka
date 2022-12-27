@@ -1,0 +1,67 @@
+%button {
+  cursor: pointer;
+  font-family: inherit;
+  border: 0px;
+  padding: 0;
+}
+
+.modal-close-button {
+  @extend %button;
+  @include centered-flex();
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  fill: #000000;
+  background-color: transparent;
+  transition-property: fill, transform;
+  transition-duration: 250ms;
+  //   transition-timing-function: $timing-function;
+
+  &:hover,
+  &:focus {
+    // fill: $accent-color;
+    transform: rotate(180deg);
+  }
+
+  &__cross {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.filmoteca-btn {
+  @extend %button;
+  @include centered-flex();
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 14px 18px;
+  border-radius: $border-radius;
+  transition-property: fill;
+  transition-duration: 250ms;
+  //   transition-timing-function: $timing-function;
+
+  &--primary {
+    color: $white;
+    background-color: $accent-color;
+
+    // &:hover,
+    // &:focus {
+    //   // fill: $accent-color;
+    //   // transform: rotate(180deg);
+    // }
+  }
+
+  &--secondary {
+    color: $first-font-color;
+    background-color: transparent;
+    border: 1px solid $first-font-color;
+
+    // &:hover,
+    // &:focus {
+    //   // fill: $accent-color;
+    //   // transform: rotate(180deg);
+    // }
+  }
+}

@@ -1,0 +1,11 @@
+.gallery {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gap;
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: calc($gap / 2);
+  }
+}

@@ -1,0 +1,175 @@
+.container__header {
+  position: relative;
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.56);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media screen and (min-width: 768px) {
+    padding-top: 45px;
+    padding-left: $gap;
+    padding-right: $gap;
+  }
+}
+
+.header {
+  height: 230px;
+  letter-spacing: 0.06em;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    height: 216px;
+  }
+}
+
+.header__background {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(../images/mobile/abstract-background-with-red-lines\ 1.jpg);
+
+  @media screen and (min-width: 768px) {
+    background-image: url(../images/tablet/abstract-background-with-red-lines\ 1.jpg);
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url(../images/desctop/abstract-background-with-red-lines\ 1.jpg);
+  }
+}
+
+.navigation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  color: $white;
+}
+
+.navigation__logo {
+  display: flex;
+  align-items: baseline;
+  text-decoration: none;
+
+  & span {
+    @media screen and (min-width: 768px) {
+      display: inline;
+      margin-left: 10px;
+      font-size: 30px;
+      line-height: 35px;
+    }
+  }
+}
+
+.navigation__list {
+  display: flex;
+  margin-left: auto;
+}
+
+.navigation__item {
+  &:last-child {
+    margin-left: 40px;
+  }
+}
+
+.navigation__link {
+  font-weight: 500;
+  line-height: 14px;
+  padding-bottom: 3px;
+  position: relative;
+  display: block;
+  opacity: 80%;
+
+  &--current {
+    opacity: 100%;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #ff001b;
+    }
+  }
+}
+
+.searchForm {
+  position: relative;
+  display: inline;
+
+  & input {
+    width: 280px;
+    height: 20px;
+    margin-top: 54px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    line-height: 1.14;
+    color: $white;
+    background-color: transparent;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0.5px solid white;
+
+    &::placeholder {
+      font-size: 14px;
+      line-height: 1.14;
+      color: $white;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 336px;
+      margin-top: 40px;
+    }
+
+    @media screen and (min-width: 1279px) {
+      width: 394px;
+    }
+  }
+
+  & button {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  &__icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.searchForm__message {
+  position: relative;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.05px;
+  text-align: left;
+  color: #ff001b;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media screen and (min-width: 768px) {
+    text-align: center;
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import './utils/reset-styles';
+@import './utils/visually-hidden';
+@import './utils/mixins';
+@import './utils/family';
+@import 'variables';
+@import 'scaffolding';
+@import 'header';
+@import 'gallery';
+@import 'movieCard';
+@import 'pagination';
+@import 'footer';
+@import './movieModal/movieModal';
+@import './buttons/buttons';
