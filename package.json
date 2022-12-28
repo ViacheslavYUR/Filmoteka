@@ -2,7 +2,7 @@
   "name": "filmoteka",
   "version": "2.0.0",
   "description": "",
-  "homepage": " https://CyresSmith.github.io/Filmoteka",
+  "homepage": " https://ViacheslavYUR.github.io/Filmoteka",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /Filmoteka",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CyresSmith/filmoteka.git"
+    "url": "git+https://github.com/ViacheslavYUR/filmoteka.git"
   },
   "keywords": [],
   "author": "",
