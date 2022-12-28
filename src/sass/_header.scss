@@ -139,7 +139,7 @@
     }
   }
 
-  & button {
+  &__button {
     position: absolute;
     right: 0px;
     bottom: 0px;
@@ -150,6 +150,10 @@
     background-color: transparent;
     border: 0;
     cursor: pointer;
+
+    &:disabled {
+      opacity: 20%;
+    }
   }
 
   &__icon {

@@ -65,3 +65,39 @@
     // }
   }
 }
+
+.scroll-up-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 30px;
+  right: 30px;
+  background-color: $second-font-color;
+  border-radius: $border-radius;
+  opacity: 0.3;
+  color: black;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in-out;
+  box-shadow: 1px 49px 41px -25px rgba(0, 0, 0, 0.51);
+  z-index: 9;
+
+  &--hidden {
+    transform: translateY(+200%);
+  }
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+    background-color: $accent-color;
+    scale: 1.1;
+  }
+
+  &__icon {
+    fill: $white;
+    rotate: 270deg;
+  }
+}
