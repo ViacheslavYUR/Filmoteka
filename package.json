@@ -2,10 +2,12 @@
   "name": "filmoteka",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://github.com/CyresSmith/filmoteka.git",
+  "homepage": " https://CyresSmith.github.io/Filmoteka",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /Filmoteka"
+    "build": "parcel build src/*.html --public-url /Filmoteka",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   },
   "dependencies": {
     "eslint-config-airbnb": "^19.0.4",
+    "gh-pages": "^4.0.0",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
