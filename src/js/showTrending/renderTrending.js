@@ -1,5 +1,6 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fetchTrending } from './fetchTrending';
 import { fetchGenres } from '../fetchGenres';
 
@@ -11,10 +12,6 @@ const refs = {
   backdrop: document.querySelector('.backdrop'),
 };
 
-let page = 1;
-let pageLimit = 40;
-let lastCard;
-
 const renderMarkup = async () => {
   try {
     const { page, results, total_pages, total_results } = await fetchTrending();
@@ -23,7 +20,8 @@ const renderMarkup = async () => {
       Loading.hourglass();
 
       refs.gallery.innerHTML = await galleryMarkupСreation(results);
-      if (total_results > pageLimit) {
+      if (page === total_pages) {
+        Notify.info("That's where all the trendy movies ended");
       }
 
       Loading.remove();
@@ -32,7 +30,6 @@ const renderMarkup = async () => {
     Report.failure('Sorry, some problem happend. Please try again.');
     refs.gallery.innerHTML = '';
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error.message);
   }
 };
@@ -54,7 +51,7 @@ const cardGanres = cardGenresArr => {
 };
 
 const titleSlice = title => {
-  if (title.length > 35) {
+  if (title.length > 30) {
     const titleSliced = title.slice(0, 30) + '...';
     return titleSliced;
   } else {
@@ -97,41 +94,3 @@ const galleryMarkupСreation = async results => {
 };
 
 renderMarkup();
-// const loadMore = async () => {
-//   page += 1;
-//   Loading.hourglass();
-
-//   try {
-//     const { results, total_pages, total_results } = await fetchTrending(page);
-//     refs.gallery.insertAdjacentHTML(
-//       'beforeend',
-//       galleryMarkupСreation(results)
-//     );
-//     Loading.remove();
-
-//     // if (page * pageLimit >= totalHits) {
-//     //   Notify.info("We're sorry, but you've reached the end of search results.");
-//     //   return;
-//     // }
-
-//     observeLastCard();
-//   } catch (error) {
-//     // eslint-disable-next-line no-console
-//     console.error(error.message);
-//   }
-// };
-
-// const observer = new IntersectionObserver(
-//   ([entry], observer) => {
-//     if (entry.isIntersecting) {
-//       observer.unobserve(entry.target);
-//       loadMore();
-//     }
-//   },
-//   { threshold: 0.5 }
-// );
-
-// const observeLastCard = () => {
-//   lastCard = document.querySelector('.movieCard:last-child');
-//   observer.observe(lastCard);
-// };
