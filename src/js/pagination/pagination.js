@@ -30,16 +30,14 @@ const options = {
             '</a>'
     }
 }
+const paginationCont= document.querySelector('.tui-pagination');
+const pagination = new Pagination(paginationCont, options);
 
-const paginationContainer=document.querySelector('.tui-pagination');
-
-
-const pagination = new Pagination(paginationContainer, options);
+const page = pagination.getCurrentPage();
 
 
 pagination.on('beforeMove', loadMoreTrendingFilms);
 
-// const page = pagination.getCurrentPage();
 
 async function loadMoreTrendingFilms(e) {
     const currentPage = e.page;
