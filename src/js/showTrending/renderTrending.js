@@ -30,7 +30,7 @@ export const renderMarkup = async () => {
   }
 };
 
-const cardGenres = (genre_ids, genres) => {
+export const cardGenres = (genre_ids, genres) => {
   let cardGenresArr = [];
 
   genre_ids.map(genre_id =>
@@ -56,7 +56,7 @@ const cardGenres = (genre_ids, genres) => {
   }
 };
 
-const titleSlice = title => {
+export const titleSlice = title => {
   if (title.length > 30) {
     const titleSliced = title.slice(0, 30) + '...';
     return titleSliced;
@@ -65,7 +65,7 @@ const titleSlice = title => {
   }
 };
 
-const galleryMarkupСreation = (results, genres) => {
+export const galleryMarkupСreation = (results, genres) => {
   const markup = results
     .map(
       ({ poster_path, title, id, genre_ids, release_date }) => `
