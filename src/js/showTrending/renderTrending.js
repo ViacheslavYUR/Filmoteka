@@ -86,3 +86,5 @@ const galleryMarkupСreation = (results, genres) => {
     .join('');
   return markup;
 };
+
+renderMarkup();
