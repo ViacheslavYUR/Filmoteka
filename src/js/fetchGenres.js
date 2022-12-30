@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import axios from 'axios';
 
 export const fetchGenres = async () => {
@@ -12,7 +11,6 @@ export const fetchGenres = async () => {
     const { data } = await axios.get(`${URL}?${searchParams}`);
     return data;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error.message);
   }
 };
