@@ -2,12 +2,13 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
 import { fetchTrending } from '../showTrending/fetchTrending';
+import { fetchGenres } from '../fetchGenres';
 import *as render from '../showTrending/renderTrending';
 
 console.log(render)
 
 const gallery= document.querySelector('.gallery');
-console.log(gallery)
+
 
 const options = {
     totalItems: 20000,
@@ -42,13 +43,18 @@ pagination.on('beforeMove', loadMoreTrendingFilms);
 async function loadMoreTrendingFilms(e) {
     const currentPage = e.page;
    await fetchTrending(currentPage);
-   await renderMoreTrandingFilms(currentPage);
+   const { genres } = await fetchGenres();
+   await render.cardGenres(genre_ids, genres);
+   await render.titleSlice(title);
+   await render.galleryMarkupСreation(results, genres);
+   await render.renderMarkup();
+  //  await renderMoreTrandingFilms(currentPage);
 }
 
 async function renderMoreTrandingFilms(page) {
     try {
         const { results, total_pages, total_results, genres } = await fetchTrending(page);
-        gallery.innerHTML=galleryMarkupСreation(results, genres);
+        gallery.innerHTML=render.galleryMarkupСreation(results, genres);
       
 }
 
@@ -57,26 +63,3 @@ catch (error) {
     console.error(error.message);
   }
 }
-
-
-function galleryMarkupСreation (results, genres)  {
-    const markup = results
-      .map(
-        ({ poster_path, title, id, genre_ids, release_date }) => `
-        <li class="movieCard">
-                <a data-id="${id}">
-                    <img class="movieCard__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
-                    <p class="movieCard__info movieCard__title">${titleSlice(
-                      title
-                    )}</p>
-                        <p class="movieCard__info movieCard__description">${cardGenres(
-                          genre_ids,
-                          genres
-                        )} | ${release_date.slice(0, 4)}</p>
-                </a>
-        </li>
-      `
-      )
-      .join('');
-    return markup;
-  };
