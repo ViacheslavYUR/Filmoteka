@@ -47,16 +47,3 @@ async function loadMoreTrendingFilms(e) {
 
   gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
 }
-
-// async function renderMoreTrandingFilms(page) {
-//     try {
-//         const { results, total_pages, total_results, genres } = await fetchTrending(page);
-//         gallery.innerHTML=render.galleryMarkupСreation(results, genres);
-
-// }
-
-// catch (error) {
-//     // eslint-disable-next-line no-console
-//     console.error(error.message);
-//   }
-// }
