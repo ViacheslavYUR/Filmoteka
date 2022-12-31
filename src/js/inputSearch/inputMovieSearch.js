@@ -1,5 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import MovieApiService from './getAllMovieApi';
+import { galleryMarkupСreation } from '../showTrending/renderTrending';
+import { fetchGenres } from '../fetchGenres';
 
 const movieApiService = new MovieApiService();
 
@@ -25,12 +27,14 @@ function handleInputSearchCondition(e) {
   }
 }
 
-async function handleInputSearchMovie(e) {
+export async function handleInputSearchMovie(e) {
   e.preventDefault();
   movieApiService.request = e.currentTarget.elements.searchQuery.value.trim();
 
   const response = await movieApiService.getMovie();
   const results = response.results;
+  const { genres } = await fetchGenres();
+  console.log(genres);
 
   if (results.length === 0) {
     console.log(results);
@@ -43,7 +47,7 @@ async function handleInputSearchMovie(e) {
   clearRender();
 
   console.log(results);
-  // there has to be a markup function
+  refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
 }
 
 function clearRender() {
