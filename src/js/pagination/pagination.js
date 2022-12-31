@@ -40,8 +40,12 @@ pagination.on('beforeMove', loadMoreTrendingFilms);
 
 async function loadMoreTrendingFilms(e) {
   const currentPage = e.page;
-  const { results } = await fetchTrending(currentPage);
+  const { results, total_results, total_pages } = await fetchTrending(
+    currentPage
+  );
   console.log('results ', results);
+  console.log('total_results ', total_results);
+  console.log('total_pages', total_pages);
   const { genres } = await fetchGenres();
   console.log('genres ', genres);
 
