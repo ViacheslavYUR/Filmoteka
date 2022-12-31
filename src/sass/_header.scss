@@ -114,9 +114,10 @@
   position: relative;
   display: block;
   opacity: 85%;
+  transition-property: scale;
+  transition-duration: 300ms;
   &:hover,
   &:focus {
-    transition: 300ms;
     scale: 1.25;
     opacity: 1;
   }
@@ -182,13 +183,13 @@
     padding: 4px;
     background-color: transparent;
     border: 0;
+    transition-property: scale;
+    transition-duration: 300ms;
+
     cursor: pointer;
 
     &:hover,
     &:focus {
-      transition-property: scale;
-      transition-duration: 300ms;
-      ек
       scale: 1.3;
     }
 
