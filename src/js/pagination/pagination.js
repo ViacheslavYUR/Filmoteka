@@ -1,17 +1,21 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { Loading, Notify } from 'notiflix';
 
 import { fetchTrending } from '../showTrending/fetchTrending';
 import { fetchGenres } from '../fetchGenres';
 import * as render from '../showTrending/renderTrending';
 
-console.log(render);
+// console.log(render);
+
+const PER_PAGE = 20;
 
 const gallery = document.querySelector('.gallery');
 
 const options = {
   totalItems: 20000,
-  itemsPerPage: 20,
+  itemsPerPage: PER_PAGE,
+  visiblePages: 10,
   page: 1,
   template: {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
@@ -34,16 +38,29 @@ const options = {
 const paginationCont = document.querySelector('.tui-pagination');
 const pagination = new Pagination(paginationCont, options);
 
-const page = pagination.getCurrentPage();
+// const page = pagination.getCurrentPage();
 
 pagination.on('beforeMove', loadMoreTrendingFilms);
 
 async function loadMoreTrendingFilms(e) {
   const currentPage = e.page;
-  const { results } = await fetchTrending(currentPage);
-  console.log('results ', results);
-  const { genres } = await fetchGenres();
-  console.log('genres ', genres);
-
-  gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
+  try {
+    const { results, total_results, total_pages } = await fetchTrending(
+      currentPage
+    );
+    // console.log('results ', results);
+    // console.log('total_results ', total_results);
+    // console.log('total_pages', total_pages);
+    const { genres } = await fetchGenres();
+    // console.log('genres ', genres);
+    if (total_results > 0) {
+      Loading.hourglass();
+      gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
+      Loading.remove();
+      return;
+    }
+  } catch (err) {
+    Notify.failure(err.message);
+    pagination.classList.add('js-hidden');
+  }
 }
