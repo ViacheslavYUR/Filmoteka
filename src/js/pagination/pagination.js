@@ -39,30 +39,11 @@ const page = pagination.getCurrentPage();
 pagination.on('beforeMove', loadMoreTrendingFilms);
 
 async function loadMoreTrendingFilms(e) {
-<<<<<<< Updated upstream
   const currentPage = e.page;
   const { results } = await fetchTrending(currentPage);
   console.log('results ', results);
   const { genres } = await fetchGenres();
   console.log('genres ', genres);
-=======
-    const currentPage = e.page;
-   await fetchTrending(currentPage);
-   const { genres } = await fetchGenres();
-//    await render.cardGenres(genre_ids, genres);
-//    await render.titleSlice(title);
-//    await render.galleryMarkupСreation(results, genres);
-//    await render.renderMarkup();
-  //  await renderMoreTrandingFilms(currentPage);
-}
-
-async function renderMoreTrandingFilms(page) {
-    try {
-        const { results, total_pages, total_results, genres } = await fetchTrending(page);
-        gallery.innerHTML=render.galleryMarkupСreation(results, genres);
-      
-}
->>>>>>> Stashed changes
 
   gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
 }
