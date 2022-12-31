@@ -3,3 +3,27 @@
   align-items: center;
   justify-content: $type;
 }
+
+@mixin mob {
+  @media screen and (min-width: 480px) {
+    @content;
+  }
+}
+@mixin tab {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+@mixin desk {
+  @media screen and (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin pixel-2x {
+  @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
