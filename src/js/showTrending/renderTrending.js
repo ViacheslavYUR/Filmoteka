@@ -1,7 +1,7 @@
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { fetchTrending } from './fetchTrending';
+import { fetchGenres } from '../fetchGenres';
 
 const refs = {
   searchForm: document.querySelector('.searchForm'),
@@ -10,24 +10,15 @@ const refs = {
   gallery: document.querySelector('.gallery'),
 };
 
-let page = 1;
-let pageLimit = 40;
-let searchQuery = '';
-let gallery;
-let lastCard;
-
-const renderMarkup = async () => {
+export const renderMarkup = async () => {
   try {
     const { page, results, total_pages, total_results } = await fetchTrending();
+    const { genres } = await fetchGenres();
 
     if (total_results > 0) {
       Loading.hourglass();
 
-      refs.gallery.innerHTML = galleryMarkupСreation(results);
-
-      if (total_results > pageLimit) {
-        observeLastCard();
-      }
+      refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
 
       Loading.remove();
       return;
@@ -35,70 +26,65 @@ const renderMarkup = async () => {
     Report.failure('Sorry, some problem happend. Please try again.');
     refs.gallery.innerHTML = '';
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error.message);
   }
 };
 
-renderMarkup();
+export const cardGenres = (genre_ids, genres) => {
+  let cardGenresArr = [];
 
-const galleryMarkupСreation = results => {
+  genre_ids.map(genre_id =>
+    genres.map(genre => {
+      if (genre.id === genre_id) {
+        cardGenresArr.push(genre.name);
+      }
+    })
+  );
+
+  switch (true) {
+    case cardGenresArr.length > 2:
+      return `${cardGenresArr[0]}, ${cardGenresArr[1]}, other...`;
+
+    case cardGenresArr.length === 2:
+      return `${cardGenresArr[0]}, ${cardGenresArr[1]}`;
+
+    case cardGenresArr.length === 1:
+      return `${cardGenresArr[0]}`;
+
+    default:
+      break;
+  }
+};
+
+export const titleSlice = title => {
+  if (title.length > 30) {
+    const titleSliced = title.slice(0, 30) + '...';
+    return titleSliced;
+  } else {
+    return title;
+  }
+};
+
+export const galleryMarkupСreation = (results, genres) => {
   const markup = results
     .map(
-      ({ poster_path, title, release_date }) => `
-        <li class="movieCard" data-modal-open>
-            <article>
-                <a>
-                    <img class="movieCard__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
-                    <div class="movieCard__info">
-                        <p class="movieCard__title">${title}</p>
-                        <p class="movieCard__description">Drama, Action | ${release_date}</p>
-                    </div>
-                </a>
-            </article>
-        </li>
-      `
+      ({ poster_path, title, id, genre_ids, release_date }) => `
+      <li class="movieCard">
+              <a data-id="${id}">
+                  <img class="movieCard__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
+                  <p class="movieCard__info movieCard__title">${titleSlice(
+                    title
+                  )}</p>
+                      <p class="movieCard__info movieCard__description">${cardGenres(
+                        genre_ids,
+                        genres
+                      )} | ${release_date.slice(0, 4)}</p>
+              </a>
+      </li>
+    `
     )
     .join('');
   return markup;
 };
 
-const loadMore = async () => {
-  page += 1;
-  Loading.hourglass();
-
-  try {
-    console.log(page);
-    const { results, total_pages, total_results } = await fetchTrending(page);
-    refs.gallery.insertAdjacentHTML(
-      'beforeend',
-      galleryMarkupСreation(results)
-    );
-    Loading.remove();
-
-    // if (page * pageLimit >= totalHits) {
-    //   Notify.info("We're sorry, but you've reached the end of search results.");
-    //   return;
-    // }
-
-    observeLastCard();
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error.message);
-  }
-};
-
-const observer = new IntersectionObserver(
-  ([entry], observer) => {
-    if (entry.isIntersecting) {
-      observer.unobserve(entry.target);
-      loadMore();
-    }
-  },
-  { threshold: 0.5 }
-);
-
-const observeLastCard = () => {
-  lastCard = document.querySelector('.movieCard:last-child');
-  observer.observe(lastCard);
-};
+renderMarkup();

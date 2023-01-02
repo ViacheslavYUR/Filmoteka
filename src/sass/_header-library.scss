@@ -1,0 +1,180 @@
+@import './utils/mixins';
+
+.header {
+  padding-top: 40px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(../images/mobile/rectangle-mob.jpg);
+  background-size: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  padding-bottom: 62px;
+  @include pixel-2x {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/mobile/rectangle-mob@2x.jpg);
+  }
+
+  @include tab {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/tablet/rectangle-tab.jpg);
+    @include pixel-2x {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/tablet/rectangle-tab@2x.jpg);
+    }
+  }
+  @include desk {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/desctop/rectangle-pc.jpg);
+    padding-bottom: 60px;
+
+    @include pixel-2x {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/desctop/rectangle-pc@2x.jpg);
+    }
+  }
+}
+
+.header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 320px;
+
+  @include tab {
+    max-width: 768px;
+    margin-bottom: 9px;
+  }
+
+  @include desk {
+    max-width: 1280px;
+    margin-bottom: 10px;
+  }
+}
+
+.header-nav_list {
+  display: flex;
+}
+
+.main-logo_text {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.16;
+  color: $white;
+  @media screen and(max-width:767px) {
+    display: none;
+  }
+}
+.main-logo_icon {
+  margin-right: 10px;
+}
+
+.header-nav_home {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+
+  text-transform: uppercase;
+  color: $white;
+  margin-right: 40px;
+
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.header-nav_libr {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+
+  text-transform: uppercase;
+  color: $white;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  position: relative;
+}
+
+.link-current::after {
+  content: '';
+  display: block;
+  width: 100%;
+  background-color: #ff001b;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.header_btn-wrap {
+  display: flex;
+  justify-content: center;
+}
+.header_btn-watched {
+  display: block;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+
+  color: $white;
+  margin-right: 20px;
+  padding: 14px 37px 12px 37px;
+  @include tab {
+    margin-right: 32px;
+    padding: 14px 48px 12px 48px;
+  }
+  @include desk {
+    margin-right: 16px;
+    padding: 14px 46px 11px 46px;
+  }
+}
+.header_btn-queue {
+  display: block;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  padding: 14px 45px 12px 45px;
+  color: $white;
+  @include tab {
+    padding: 13px 56px 13px 57px;
+  }
+  @include desk {
+    padding: 14px 54px 11px 54px;
+  }
+}
+.current-btn {
+  background-color: $accent-color;
+
+  border-radius: 5px;
+  cursor: pointer;
+}
+.simple-btn {
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.header-nav_log {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+
+  text-transform: uppercase;
+  color: $white;
+  padding-right: 0;
+
+  display: block;
+  margin-left: auto;
+  margin-top: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

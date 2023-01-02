@@ -3,14 +3,12 @@
 @import './utils/visually-hidden';
 @import './utils/mixins';
 @import './utils/family';
-@import './utils/js-hidden';
 @import 'variables';
 @import 'scaffolding';
-@import 'header';
+@import 'header-library';
 @import 'gallery';
 @import 'movieCard';
 @import 'pagination';
 @import 'footer';
-@import 'modal-team';
 @import './movieModal/movieModal';
 @import './buttons/buttons';
