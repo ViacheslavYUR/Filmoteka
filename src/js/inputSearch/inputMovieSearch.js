@@ -23,18 +23,24 @@ function handleInputSearchCondition(e) {
       'input',
       handleInputSearchCondition
     );
-    console.log(e);
+    // console.log(e);
   }
 }
 
 export async function handleInputSearchMovie(e) {
   e.preventDefault();
-  movieApiService.request = e.currentTarget.elements.searchQuery.value.trim();
+  let searchValue = e.currentTarget.elements.searchQuery.value.trim();
+
+  if (searchValue !== movieApiService.userRequest) {
+    movieApiService.resetPage();
+  }
+  movieApiService.request = searchValue;
 
   const response = await movieApiService.getMovie();
   const results = response.results;
+  // console.log(movieApiService.request);
   const { genres } = await fetchGenres();
-  console.log(genres);
+  // console.log(genres);
 
   if (results.length === 0) {
     console.log(results);
@@ -45,8 +51,8 @@ export async function handleInputSearchMovie(e) {
   }
 
   clearRender();
-
-  console.log(results);
+  // console.log(movieApiService);
+  // console.log(results);
   refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
 }
 
