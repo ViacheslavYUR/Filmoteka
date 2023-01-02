@@ -5,9 +5,9 @@ const refs = {
   movieModal: document.querySelector('.movieModal__info'),
 };
 
-// const genresTxt = genres => {
-//     const arr = genres.map(({ name }) => name);
-// }
+const genresTxt = genres => {
+  return genres.map(({ name }) => name).join(', ');
+};
 
 export const renderModalMarkup = ({
   poster_path,
@@ -51,7 +51,9 @@ export const renderModalMarkup = ({
             </tr>
             <tr>
               <td class="movieModal__parameter no-padding-td">Genre</td>
-              <td class="movieModal__value no-padding-td">${genres}</td>
+              <td class="movieModal__value no-padding-td">${genresTxt(
+                genres
+              )}</td>
             </tr>
           </tbody>
         </table>
