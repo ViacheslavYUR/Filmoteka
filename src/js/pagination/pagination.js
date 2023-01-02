@@ -6,23 +6,21 @@ import { fetchTrending } from '../showTrending/fetchTrending';
 import { fetchGenres } from '../fetchGenres';
 import * as render from '../showTrending/renderTrending';
 
-// console.log(render);
-
 const PER_PAGE = 20;
 
 const gallery = document.querySelector('.gallery');
 
 const options = {
-  totalItems: 20000,
+  totalItems: 0,
   itemsPerPage: PER_PAGE,
   visiblePages: 10,
   page: 1,
   template: {
-    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    page: '<a href="&" class="tui-page-btn">{{page}}</a>',
     currentPage:
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
-      '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+      '<a href="&" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
       '<span class="tui-ico-{{type}}">{{type}}</span>' +
       '</a>',
     disabledMoveButton:
@@ -30,15 +28,16 @@ const options = {
       '<span class="tui-ico-{{type}}">{{type}}</span>' +
       '</span>',
     moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+      '<a href="&" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
       '<span class="tui-ico-ellip">...</span>' +
       '</a>',
   },
 };
+
 const paginationCont = document.querySelector('.tui-pagination');
 const pagination = new Pagination(paginationCont, options);
 
-// const page = pagination.getCurrentPage();
+const page = pagination.getCurrentPage();
 
 pagination.on('beforeMove', loadMoreTrendingFilms);
 
@@ -64,3 +63,10 @@ async function loadMoreTrendingFilms(e) {
     pagination.classList.add('js-hidden');
   }
 }
+
+fetchTrending(page)
+  .then(({ results, total_results }) => {
+    pagination.reset(total_results);
+  })
+  .catch(err => {Notify.failure(err.message)
+  pagination.classList.add('is-hidden')});

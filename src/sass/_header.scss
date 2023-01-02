@@ -1,5 +1,6 @@
 .header {
   height: 230px;
+  background: linear-gradient(#0082d1 50%, #ffd100 50%);
 
   @media screen and (min-width: 768px) {
     height: 216px;
@@ -11,11 +12,11 @@
   padding-top: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  opacity: 0.9;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(../images/mobile/abstract-background-with-red-lines\ 1.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(../images/mobile/abstract-background-with-red-lines\ 1.jpg);
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -113,7 +114,7 @@
   padding-bottom: 3px;
   position: relative;
   display: block;
-  opacity: 85%;
+  opacity: 95%;
   transition-property: scale;
   transition-duration: 300ms;
   &:hover,
@@ -142,7 +143,6 @@
   border-bottom: 0.5px solid white;
   @media screen and (min-width: 768px) {
     width: 336px;
-    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -191,6 +191,7 @@
     &:hover,
     &:focus {
       scale: 1.3;
+      color: white;
     }
 
     &:disabled {
@@ -199,6 +200,7 @@
   }
 
   &__icon {
+    fill: inherit;
     width: 12px;
     height: 12px;
   }

@@ -3,30 +3,74 @@
 .movieModal {
   position: absolute;
   display: flex;
-  gap: calc($gap / 2);
   font-weight: 500;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 806px;
-  min-height: 558px;
-  padding: 40px 12px;
+  width: 280px;
+  min-height: 904px;
+  padding: 48px 20px;
   z-index: 888;
   background-color: $background-color;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    min-height: 552px;
+    padding: 40px 36px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: calc($gap / 2);
+    width: 806px;
+    min-height: 558px;
+    padding: 40px 12px;
+  }
 }
 
-.movieModal__image,
 .movieModal__info {
-  width: calc((100% - $gap / 2) / 2);
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    // flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 68px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: 16px;
+  }
+}
+
+.movieModal__wraper {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+
+  @media screen and (min-width: 768px) {
+    width: 264px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 391px;
+  }
 }
 
 .movieModal__image {
-}
+  width: 240px;
+  max-height: 357px;
 
-.movieModal__info {
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    max-height: 374px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 375px;
+    max-height: 478px;
+  }
 }
 
 .movieModal__table {
@@ -54,14 +98,15 @@
   width: 152px;
 }
 
-.movieModal__value {
-}
-
 .movieModal__caption {
-  font-size: 30px;
+  font-size: 20px;
   line-height: 1.17;
   text-align: left;
   margin-bottom: 20px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 30px;
+  }
 }
 
 .movieModal__vote,
