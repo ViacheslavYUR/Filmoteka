@@ -6,8 +6,6 @@ import { fetchTrending } from '../showTrending/fetchTrending';
 import { fetchGenres } from '../fetchGenres';
 import * as render from '../showTrending/renderTrending';
 
-// console.log(render);
-
 const PER_PAGE = 20;
 
 const gallery = document.querySelector('.gallery');
@@ -35,6 +33,7 @@ const options = {
       '</a>',
   },
 };
+
 const paginationCont = document.querySelector('.tui-pagination');
 const pagination = new Pagination(paginationCont, options);
 
@@ -63,11 +62,11 @@ async function loadMoreTrendingFilms(e) {
     Notify.failure(err.message);
     pagination.classList.add('js-hidden');
   }
-
 }
 
-fetchTrending(page).then(({results, total_results})=>{
-  
-  pagination.reset(total_results);
-
-})
+fetchTrending(page)
+  .then(({ results, total_results }) => {
+    pagination.reset(total_results);
+  })
+  .catch(err => {Notify.failure(err.message)
+  pagination.classList.add('is-hidden')});
