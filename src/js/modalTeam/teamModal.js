@@ -6,23 +6,24 @@
   };
 
   refs.openModalBtn.addEventListener('click', openModal);
-  refs.closeModalBtn.addEventListener('click', toggleModal);
-
-  function toggleModal(){
-    refs.modal.classList.toggle('backdrop--hidden');
+  refs.closeModalBtn.addEventListener('click', closeModal);
+  
+  function closeModalEsc(e) {
+      if (e.code === 'Escape') {
+        refs.modal.classList.add('backdrop--hidden')
+        window.removeEventListener('keydown', closeModalEsc);
+      }
   }
   
   function openModal(e) {
     e.preventDefault();
-    toggleModal();
+    refs.modal.classList.remove('backdrop--hidden');
+    
+    window.addEventListener('keydown', closeModalEsc);  
+  }
 
-    window.addEventListener('keydown', closeModalEsc);
-
-    function closeModalEsc(e) {
-      if (e.code === 'Escape') {
-        toggleModal();
-        window.removeEventListener('keydown', closeModalEsc);
-      }
-    }
+  function closeModal(){
+    refs.modal.classList.add('backdrop--hidden');
+    window.removeEventListener('keydown', closeModalEsc);
   }
 })();
