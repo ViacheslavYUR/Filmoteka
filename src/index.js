@@ -4,5 +4,11 @@ import { renderMarkup } from './js/showTrending/renderTrending';
 import { hiddenElementsOnMobileVersion } from './js/hideElementsInMobileVersion';
 import { handleInputSearchMovie } from './js/inputSearch/inputMovieSearch';
 import './js/pagination/pagination';
+
+import './js/modalTeam/teamModal';
+import './js/modalTeam/renderTeam';
+import './js/vanilla';
+import './js/modal';
+
 smoothscroll();
 window.addEventListener('scroll', hideScrollUpBtn);
