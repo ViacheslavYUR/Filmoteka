@@ -15,7 +15,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(../images/mobile/abstract-background-with-red-lines\ 1.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(../images/mobile/abstract-background-with-red-lines\ 1.jpg);
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -142,7 +143,6 @@
   border-bottom: 0.5px solid white;
   @media screen and (min-width: 768px) {
     width: 336px;
-    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
   }
