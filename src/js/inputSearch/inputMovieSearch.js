@@ -45,7 +45,13 @@ export async function handleInputSearchMovie(e) {
   if (results.length === 0) {
     console.log(results);
     Notify.info(
-      'Search result not successful. Enter the correct movie name and'
+      'Search result not successful. Enter the correct movie name and',
+      {
+        position: 'center-top',
+        distance: '150px',
+        width: '394px',
+        fontSize: '14px',
+      }
     );
     return;
   }
