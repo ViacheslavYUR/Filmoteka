@@ -5,34 +5,24 @@
     modal: document.querySelector('[data-team-modal]'),
   };
 
-  refs.openModalBtn.addEventListener('click', toggleModal);
+  refs.openModalBtn.addEventListener('click', openModal);
   refs.closeModalBtn.addEventListener('click', toggleModal);
 
-  function toggleModal(e) {
-    e.preventDefault();
+  function toggleModal(){
     refs.modal.classList.toggle('backdrop--hidden');
   }
-
-  onKeydownClose();
-
-  function onKeydownClose() {
-    if (refs.modal.classList.contains("backdrop--hidden"))
-      return;
   
+  function openModal(e) {
+    e.preventDefault();
+    toggleModal();
+
     window.addEventListener('keydown', closeModalEsc);
 
-    function closeModalEsc (e) {
+    function closeModalEsc(e) {
       if (e.code === 'Escape') {
         toggleModal();
         window.removeEventListener('keydown', closeModalEsc);
       }
     }
-
-    window.addEventListener('keydown', onKeydown);
-
-    function onKeydown(e) {
-      return console.log(e.code) 
-      }
-     
   }
-  })();
+})();
