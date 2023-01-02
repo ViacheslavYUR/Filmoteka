@@ -19,7 +19,7 @@ export const renderModalMarkup = ({
   overview,
 }) => {
   const markup = `
-    <img class="movieCard__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
+    <img class="movieModal__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
       <div class="movieModal__wraper">
         <table class="movieModal__table">
           <caption class="movieModal__caption">
