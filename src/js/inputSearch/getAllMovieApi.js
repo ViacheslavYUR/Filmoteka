@@ -7,7 +7,7 @@ export default class MovieApiService {
   constructor() {
     this.userRequest = '';
     this.page = 1;
-    this.totalResults = '';
+    this.totalResults = 0;
     // this.perPage = 21;
   }
 

@@ -38,10 +38,10 @@ export async function handleInputSearchMovie(e) {
 
   const response = await movieApiService.getMovie();
   const results = response.results;
-  const totalResults = response.total_results;
+  // const totalResults = response.total_results;
   // console.log(totalResults);
   // console.log(movieApiService.request);
-  // console.log(movieApiService.totalResults);
+  console.log(movieApiService.totalResults);
   const { genres } = await fetchGenres();
   // console.log(genres);
 
