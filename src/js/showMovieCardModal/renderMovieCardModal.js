@@ -30,7 +30,6 @@ export const renderModalMarkup = ({
 }) => {
   const localMovies = localStorage.getItem('movieID');
   const parsedLocalMovies = JSON.parse(localMovies);
-
   const queueText = parsedLocalMovies.queue.includes(String(id))
     ? 'Remove from Queue'
     : 'Add to Queue';
