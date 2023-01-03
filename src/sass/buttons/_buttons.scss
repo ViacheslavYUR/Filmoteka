@@ -36,7 +36,7 @@
   line-height: 1.33;
   font-weight: 500;
   text-transform: uppercase;
-  padding: 14px 18px;
+  padding: 6px 27px;
   border-radius: $border-radius;
   transition-property: fill;
   transition-duration: 250ms;
@@ -63,6 +63,10 @@
     //   // fill: $accent-color;
     //   // transform: rotate(180deg);
     // }
+  }
+
+  @media screen and (min-width: 768px) {
+  padding: 14px 10px;
   }
 }
 
