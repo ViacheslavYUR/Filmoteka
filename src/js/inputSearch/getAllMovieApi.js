@@ -6,17 +6,18 @@ const URL = `https://api.themoviedb.org/3/`;
 export default class MovieApiService {
   constructor() {
     this.userRequest = '';
-    // this.page = 1;
-    // this.perPage = 40;
+    this.page = 1;
+    // this.perPage = 21;
   }
 
   async getMovie() {
     const { data } = await axios.get(
-      `${URL}search/movie?api_key=${API_KEY}&query=${this.userRequest}`
+      `${URL}search/movie?api_key=${API_KEY}&query=${this.userRequest}&page=${this.page}`
     );
 
-    // this.incrementPage();
-    console.log(data);
+    this.incrementPage();
+
+    // console.log(data);
     return data;
   }
   incrementPage() {
