@@ -25,13 +25,6 @@ import { renderModalMarkup } from './showMovieCardModal/renderMovieCardModal';
       id = e.target.parentElement.dataset.id;
     }
 
-    // const data = await fetchMovieTrailer(id);
-    // if (data) {
-    //   renderModalMarkup(data);
-    // } else {
-    //   console.error(error);
-    // }
-
     try {
       const data = await fetchMovieCardModal(id);
       if (data) {
@@ -47,6 +40,7 @@ import { renderModalMarkup } from './showMovieCardModal/renderMovieCardModal';
   function onCloseModal() {
     window.removeEventListener('keydown', onEscKeyPress);
     refs.modal.classList.add('backdrop--hidden');
+    document.querySelector('.movieModal__info').innerHTML = '';
     // console.log('Клікнув в close!!!!');
   }
 
