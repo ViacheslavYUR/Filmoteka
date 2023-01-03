@@ -1,5 +1,6 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
+import { ifModalNotHidden } from '../storage';
 
 const refs = {
   movieModal: document.querySelector('.movieModal__info'),
@@ -10,6 +11,7 @@ const genresTxt = genres => {
 };
 
 export const renderModalMarkup = ({
+  id,
   poster_path,
   original_title,
   vote_average,
@@ -64,14 +66,15 @@ export const renderModalMarkup = ({
           </p>
         </div>
         <div class="movieModal__btns">
-          <button class="filmoteca-btn filmoteca-btn--primary" type="button" data-modal-close>
+          <button class="filmoteca-btn filmoteca-btn--primary" type="button" data-id="${id}" data-modal-close>
             add to Watched
           </button>
-          <button class="filmoteca-btn filmoteca-btn--secondary" type="button" data-modal-close>
+          <button class="filmoteca-btn filmoteca-btn--secondary" type="button" data-id="${id}" data-modal-close>
             add to queue
           </button>
         </div>
       </div>
     `;
   document.querySelector('.movieModal__info').innerHTML = markup;
+  ifModalNotHidden();
 };
