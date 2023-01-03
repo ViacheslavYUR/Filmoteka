@@ -38,12 +38,15 @@ export async function handleInputSearchMovie(e) {
 
   const response = await movieApiService.getMovie();
   const results = response.results;
+  // const totalResults = response.total_results;
+  // console.log(totalResults);
   // console.log(movieApiService.request);
+  console.log(movieApiService.totalResults);
   const { genres } = await fetchGenres();
   // console.log(genres);
 
   if (results.length === 0) {
-    console.log(results);
+    // console.log(results);
     Notify.info(
       'Search result not successful. Enter the correct movie name and',
       {
@@ -51,6 +54,7 @@ export async function handleInputSearchMovie(e) {
         distance: '150px',
         width: '394px',
         fontSize: '14px',
+        backOverlay: true,
       }
     );
     return;
