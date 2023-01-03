@@ -23,7 +23,7 @@ function setToWatchedStorage(evt) {
     dataStorage.watched.push(evt.target.dataset.id);
     console.log(evt.target.dataset.id);
     localStorage.setItem('movieID', JSON.stringify(dataStorage));
-    evt.target.textContent = 'Remove from Watched';
+    changeBtnTextContent(evt);
     return;
   } else {
     evt.target.textContent = 'ADD TO WATCHED';
@@ -59,3 +59,7 @@ function setToQueueStorage(evt) {
 }
 
 // fetchMovieByIdFromStorageWatched();
+
+export function changeBtnTextContent(evt) {
+  evt.target.textContent = 'Remove from Watched';
+}
