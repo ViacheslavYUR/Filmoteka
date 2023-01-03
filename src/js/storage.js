@@ -13,18 +13,32 @@ export function ifModalNotHidden() {
 // По клику на карточку получаем ID фильма и закидываем его в ЛокалСторэдж - ПРОСМОТРЕННЫЕ
 
 function setToWatchedStorage(evt) {
-  if (evt.target.dataset.id) {
-    if (dataStorage.watched.includes(evt.target.dataset.id)) {
-      return;
-    }
+  // if (evt.target.dataset.id) {
+
+  const moviesFromStorage = localStorage.getItem('movieID');
+  let parsedMoviesFromStorage = JSON.parse(moviesFromStorage);
+  dataStorage.watched = parsedMoviesFromStorage.watched;
+
+  if (!dataStorage.watched.includes(evt.target.dataset.id)) {
     dataStorage.watched.push(evt.target.dataset.id);
+    console.log(evt.target.dataset.id);
+    localStorage.setItem('movieID', JSON.stringify(dataStorage));
+    changeBtnTextContent(evt);
+    return;
   } else {
-    if (dataStorage.watched.includes(evt.target.parentElement.dataset.id)) {
-      return;
+    evt.target.textContent = 'ADD TO WATCHED';
+    const savedModies = localStorage.getItem('movieID');
+    let parsedMovies = JSON.parse(savedModies);
+    console.log(parsedMovies.watched);
+    const indexMovie = parsedMovies.watched.indexOf(evt.target.dataset.id);
+    dataStorage.watched.splice(indexMovie, 1);
+    try {
+      localStorage.setItem('movieID', JSON.stringify(dataStorage));
+    } catch (error) {
+      console.log(error);
     }
-    dataStorage.watched.push(evt.target.parentElement.dataset.id);
   }
-  localStorage.setItem('movieID', JSON.stringify(dataStorage));
+  // }
 }
 
 // По клику на карточку получаем ID фильма и закидываем его в ЛокалСторэдж - ОЧЕРЕДЬ
@@ -45,3 +59,7 @@ function setToQueueStorage(evt) {
 }
 
 // fetchMovieByIdFromStorageWatched();
+
+export function changeBtnTextContent(evt) {
+  evt.target.textContent = 'Remove from Watched';
+}
