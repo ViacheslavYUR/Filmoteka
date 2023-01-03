@@ -22,7 +22,7 @@ function setToWatchedStorage(evt) {
 
   if (!dataStorage.watched.includes(evt.target.dataset.id)) {
     dataStorage.watched.push(evt.target.dataset.id);
-    console.log(evt.target.dataset.id);
+    // console.log(evt.target.dataset.id);
     localStorage.setItem('movieID', JSON.stringify(dataStorage));
     changeBtnTextContent(evt);
     return;

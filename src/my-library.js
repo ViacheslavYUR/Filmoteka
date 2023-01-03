@@ -10,5 +10,6 @@ import './js/modalTeam/renderTeam';
 import './js/vanilla';
 import './js/modal';
 
+fetchMovieByIdFromStorageWatched();
 smoothscroll();
 window.addEventListener('scroll', hideScrollUpBtn);
