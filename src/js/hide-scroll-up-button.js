@@ -9,6 +9,6 @@ function hideScrollUpBtn() {
     scrollUpButton.classList.remove('scroll-up-btn--hidden');
     return;
   }
-  scrollUpButton.classList.add('scroll-up-btn--hidden');
   scrollUpButton.blur();
+  scrollUpButton.classList.add('scroll-up-btn--hidden');
 }
