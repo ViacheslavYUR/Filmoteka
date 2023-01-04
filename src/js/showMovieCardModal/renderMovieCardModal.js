@@ -29,16 +29,19 @@ export const renderModalMarkup = ({
   genres,
   overview,
 }) => {
-  localStorage.setItem('movieID', JSON.stringify(dataStorage));
-
+  let queueText = 'Add to Queue';
+  let watchedText = 'Add to Watched';
   const localMovies = localStorage.getItem('movieID');
   const parsedLocalMovies = JSON.parse(localMovies);
-  const queueText = parsedLocalMovies.queue.includes(String(id))
-    ? 'Remove from Queue'
-    : 'Add to Queue';
-  const watchedText = parsedLocalMovies.watched.includes(String(id))
-    ? 'Remove from Watched'
-    : 'Add to Watched';
+  if (parsedLocalMovies) {
+    queueText = parsedLocalMovies.queue.includes(String(id))
+      ? 'Remove from Queue'
+      : 'Add to Queue';
+    watchedText = parsedLocalMovies.watched.includes(String(id))
+      ? 'Remove from Watched'
+      : 'Add to Watched';
+  }
+
   const markup = `
     <img class="movieModal__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
       <div class="movieModal__wraper">
