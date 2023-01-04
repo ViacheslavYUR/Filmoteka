@@ -1,6 +1,7 @@
 import { smoothscroll } from './js/smoothscroll';
 import { hideScrollUpBtn } from './js/hide-scroll-up-button';
 import { fetchMovieByIdFromStorageWatched } from './js/fromStorage/fetchWatchedFromStorage';
+import { fetchMovieByIdFromStorageQueue } from './js/fromStorage/fetchMovieByIdFromStorageQueue';
 import { hiddenElementsOnMobileVersion } from './js/hideElementsInMobileVersion';
 
 // import { renderMarkup } from './js/showTrending/renderTrending';

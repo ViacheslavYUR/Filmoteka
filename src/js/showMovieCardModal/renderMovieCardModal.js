@@ -1,6 +1,8 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { ifModalNotHidden } from '../storage';
+// import { changeBtnTextContent } from '../storage';
+
 
 const refs = {
   movieModal: document.querySelector('.movieModal__info'),
