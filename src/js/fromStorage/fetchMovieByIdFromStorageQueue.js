@@ -1,19 +1,17 @@
 import axios from 'axios';
-import { renderWatchedMarkup } from './renderWatchedMarkup';
+import { renderQueueMarkup } from './renderQueueMarkup';
 
-// const myLibrLink = document.querySelector('.header-nav_libr');
 const btnQueue = document.querySelector('.header_btn-queue');
 const btnWatched = document.querySelector('.header_btn-watched');
 const gallery = document.querySelector('.gallery');
 
 const API_KEY = 'ac91775ba29254b7e75060011bf34a90';
 
-// myLibrLink.addEventListener('click', fetchMovieByIdFromStorageWatched);
-btnWatched.addEventListener('click', fetchMovieByIdFromStorageWatched);
+btnQueue.addEventListener('click', fetchMovieByIdFromStorageQueue);
 
-async function fetchMovieByIdFromStorageWatched() {
-  btnQueue.classList.remove('current-btn');
-  btnWatched.classList.add('current-btn');
+async function fetchMovieByIdFromStorageQueue() {
+  btnWatched.classList.remove('current-btn');
+  btnQueue.classList.add('current-btn');
 
   savedMovies = localStorage.getItem('movieID');
   parsedMovies = JSON.parse(savedMovies);
@@ -21,7 +19,7 @@ async function fetchMovieByIdFromStorageWatched() {
 
   gallery.innerHTML = '';
 
-  for (let movieId of parsedMovies.watched) {
+  for (let movieId of parsedMovies.queue) {
     // console.log(
     //   'fetchMovieByIdFromStorageWatched ~ parsedMovies.watched',
     //   parsedMovies.watched
@@ -33,8 +31,8 @@ async function fetchMovieByIdFromStorageWatched() {
         `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
       );
       // renderWatchedMarkup(data);
-      // console.log(data);
-      renderWatchedMarkup(data);
+      //   console.log(data);
+      renderQueueMarkup(data);
       // запускаем функцию один раз, иначе уходит в infinity loop
       //   fetchMovieByIdFromStorageWatched = function () {
       //     return false;
@@ -44,6 +42,3 @@ async function fetchMovieByIdFromStorageWatched() {
     }
   }
 }
-
-fetchMovieByIdFromStorageWatched();
-//
