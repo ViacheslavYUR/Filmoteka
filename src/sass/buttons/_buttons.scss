@@ -46,11 +46,18 @@
     color: $white;
     background-color: $accent-color;
 
-    // &:hover,
-    // &:focus {
-    //   // fill: $accent-color;
-    //   // transform: rotate(180deg);
-    // }
+    &:hover,
+    &:focus {
+      background-color: #6fc5ff;
+      box-shadow: 0 0 20px #6fc5ff50;
+    }
+
+    &:active {
+      background-color: #3d94cf;
+      transition: all 0.25s;
+      -webkit-transition: all 0.25s;
+      box-shadow: none;
+    }
   }
 
   &--secondary {
@@ -58,15 +65,22 @@
     background-color: transparent;
     border: 1px solid $first-font-color;
 
-    // &:hover,
-    // &:focus {
-    //   // fill: $accent-color;
-    //   // transform: rotate(180deg);
-    // }
+    &:hover,
+    &:focus {
+      background-color: #6fc5ff;
+      box-shadow: 0 0 20px #6fc5ff50;
+    }
+
+    &:active {
+      background-color: #3d94cf;
+      transition: all 0.25s;
+      -webkit-transition: all 0.25s;
+      box-shadow: none;
+    }
   }
 
   @media screen and (min-width: 768px) {
-  padding: 14px 10px;
+    padding: 14px 10px;
   }
 }
 
