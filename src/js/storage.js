@@ -59,21 +59,21 @@ function setToQueueStorage(evt) {
   if (moviesFromStorageQueue === null) {
     dataStorage.queue.push(evt.target.dataset.id);
     localStorage.setItem('movieID', JSON.stringify(dataStorage));
-    changeBtnQueueTextContent(evt);
+    // changeBtnQueueTextContent(evt);
     return;
   }
 
   let parsedMoviesFromStorageQueue = JSON.parse(moviesFromStorageQueue);
-  console.log(
-    'setToQueueStorage ~ parsedMoviesFromStorageQueue',
-    parsedMoviesFromStorageQueue
-  );
+  // console.log(
+  //   'setToQueueStorage ~ parsedMoviesFromStorageQueue',
+  //   parsedMoviesFromStorageQueue
+  // );
   dataStorage = parsedMoviesFromStorageQueue;
 
   if (!dataStorage.queue.includes(evt.target.dataset.id)) {
     dataStorage.queue.push(evt.target.dataset.id);
     localStorage.setItem('movieID', JSON.stringify(dataStorage));
-    changeBtnQueueTextContent(evt);
+    // changeBtnQueueTextContent(evt);
     return;
   } else {
     evt.target.textContent = 'ADD TO Queue';
