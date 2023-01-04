@@ -1,10 +1,4 @@
-.list {
-  list-style: none;
-}
-
-.link {
-  text-decoration: none;
-}
+@import './utils/mixins';
 
 .footer {
   background-color: #f7f7f7;
@@ -19,7 +13,7 @@
   padding-bottom: 29px;
   height: 100%;
 
-  @media screen and (min-width: 768px) {
+  @include tab {
     padding-top: 30px;
     padding-bottom: 30px;
     flex-direction: row;
@@ -36,7 +30,7 @@
     text-decoration: underline;
   }
 
-  @media screen and (min-width: 768px) {
+  @include tab {
     font-size: 16px;
     line-height: 1.19;
   }
@@ -47,7 +41,7 @@
   align-items: center;
   margin-top: 10px;
 
-  @media screen and (min-width: 768px) {
+  @include tab {
     margin-top: 0;
   }
 }
@@ -72,4 +66,9 @@
   margin-left: 10px;
   margin-right: 10px;
   animation: heartbeat 1.5s infinite;
+}
+
+.modal-link:hover,
+.modal-link:focus{
+  color: $accent-color;
 }
