@@ -18,6 +18,8 @@ function setToWatchedStorage(evt) {
   if (moviesFromStorage === null) {
     dataStorage.watched.push(evt.target.dataset.id);
     localStorage.setItem('movieID', JSON.stringify(dataStorage));
+    evt.target.textContent = 'Remove from Watched';
+
     return;
   }
   let parsedMoviesFromStorage = JSON.parse(moviesFromStorage);
@@ -54,6 +56,8 @@ function setToQueueStorage(evt) {
   if (!dataStorage.queue.includes(evt.target.dataset.id)) {
     dataStorage.queue.push(evt.target.dataset.id);
     localStorage.setItem('movieID', JSON.stringify(dataStorage));
+    evt.target.textContent = 'Remove from Watched';
+
     return;
   } else {
     evt.target.textContent = 'ADD TO Queue';

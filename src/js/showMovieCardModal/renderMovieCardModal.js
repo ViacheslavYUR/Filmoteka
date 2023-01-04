@@ -7,14 +7,6 @@ const refs = {
   movieModal: document.querySelector('.movieModal__info'),
 };
 
-function changeBtnTextContent(evt) {
-  if (dataStorage.watched.includes(evt.target.dataset.id)) {
-    evt.target.textContent = 'Remove from Watched';
-    return (watchedText = evt.target.textContent);
-  }
-  return (evt.target.textContent = 'Add to Watched');
-}
-
 const genresTxt = genres => {
   return genres.map(({ name }) => name).join(', ');
 };
@@ -29,8 +21,9 @@ export const renderModalMarkup = ({
   genres,
   overview,
 }) => {
-  localStorage.setItem('movieID', JSON.stringify(dataStorage));
-
+  if (localStorage.getItem('movieID') === null) {
+    localStorage.setItem('movieID', JSON.stringify(dataStorage));
+  }
   const localMovies = localStorage.getItem('movieID');
   const parsedLocalMovies = JSON.parse(localMovies);
   const queueText = parsedLocalMovies.queue.includes(String(id))
@@ -39,6 +32,7 @@ export const renderModalMarkup = ({
   const watchedText = parsedLocalMovies.watched.includes(String(id))
     ? 'Remove from Watched'
     : 'Add to Watched';
+
   const markup = `
     <img class="movieModal__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
       <div class="movieModal__wraper">
