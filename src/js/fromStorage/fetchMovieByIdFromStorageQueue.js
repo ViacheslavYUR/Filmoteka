@@ -13,19 +13,12 @@ async function fetchMovieByIdFromStorageQueue() {
   btnWatched.classList.remove('current-btn');
   btnQueue.classList.add('current-btn');
 
-  savedMovies = localStorage.getItem('movieID');
-  parsedMovies = JSON.parse(savedMovies);
-  // console.log(parsedMovies);
+  const savedMovies = localStorage.getItem('movieID');
+  const parsedMovies = JSON.parse(savedMovies);
 
   gallery.innerHTML = '';
 
   for (let movieId of parsedMovies.queue) {
-    // console.log(
-    //   'fetchMovieByIdFromStorageWatched ~ parsedMovies.watched',
-    //   parsedMovies.watched
-    // );
-    // console.log('Here is your movies ID:', movieId);
-
     try {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`

@@ -15,10 +15,9 @@ async function fetchMovieByIdFromStorageWatched() {
   btnQueue.classList.remove('current-btn');
   btnWatched.classList.add('current-btn');
 
-  savedMovies = localStorage.getItem('movieID');
-  parsedMovies = JSON.parse(savedMovies);
+  const savedMovies = localStorage.getItem('movieID');
+  const parsedMovies = JSON.parse(savedMovies);
   // console.log(parsedMovies);
-
 
   gallery.innerHTML = '';
 
