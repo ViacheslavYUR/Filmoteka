@@ -60,6 +60,7 @@
 }
 
 .movieModal__image {
+  object-fit: contain;
   width: 240px;
   max-height: 357px;
 
