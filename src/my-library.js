@@ -9,8 +9,8 @@ import storage from './js/storage';
 // import './js/pagination/pagination';
 import './js/modalTeam/renderTeam';
 import './js/modalTeam/teamModal';
-import './js/modal';
 import './js/vanilla';
+import './js/modal';
 
 smoothscroll();
 window.addEventListener('scroll', hideScrollUpBtn);
