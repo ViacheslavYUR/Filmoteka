@@ -1,7 +1,8 @@
-let dataStorage = {
+export let dataStorage = {
   watched: [],
   queue: [],
 };
+export let watchedText = 'add to Watched';
 
 export function ifModalNotHidden() {
   const btnWatched = document.querySelector('.filmoteca-btn--primary');
@@ -31,6 +32,7 @@ function setToWatchedStorage(evt) {
 
   if (!dataStorage.watched.includes(evt.target.dataset.id)) {
     dataStorage.watched.push(evt.target.dataset.id);
+
     localStorage.setItem('movieID', JSON.stringify(dataStorage));
     changeBtnTextContent(evt);
     return;
@@ -38,6 +40,7 @@ function setToWatchedStorage(evt) {
     evt.target.textContent = 'ADD TO WATCHED';
     const savedMovies = localStorage.getItem('movieID');
     let parsedMovies = JSON.parse(savedMovies);
+
     const indexMovie = parsedMovies.watched.indexOf(evt.target.dataset.id);
     dataStorage.watched.splice(indexMovie, 1);
     try {
@@ -107,7 +110,7 @@ function setToQueueStorage(evt) {
 
 function changeBtnTextContent(evt) {
   evt.target.textContent = 'Remove from Watched';
-}
+
 
 function changeBtnQueueTextContent(evt) {
   evt.target.textContent = 'Remove from Queue';

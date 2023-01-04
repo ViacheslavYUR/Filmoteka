@@ -1,5 +1,6 @@
 import { fetchMovieCardModal } from './showMovieCardModal/fetchMovieCardModal';
 import { renderModalMarkup } from './showMovieCardModal/renderMovieCardModal';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 (() => {
   const refs = {
@@ -28,7 +29,9 @@ import { renderModalMarkup } from './showMovieCardModal/renderMovieCardModal';
     try {
       const data = await fetchMovieCardModal(id);
       if (data) {
+        Loading.hourglass();
         renderModalMarkup(data);
+        Loading.remove();
       } else {
         console.error(error);
       }

@@ -19,6 +19,7 @@ async function fetchMovieByIdFromStorageWatched() {
   parsedMovies = JSON.parse(savedMovies);
   // console.log(parsedMovies);
 
+
   gallery.innerHTML = '';
 
   for (let movieId of parsedMovies.watched) {

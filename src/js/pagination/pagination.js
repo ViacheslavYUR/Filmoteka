@@ -10,7 +10,7 @@ const PER_PAGE = 20;
 
 const gallery = document.querySelector('.gallery');
 
-const options = {
+export const options = {
   totalItems: 0,
   itemsPerPage: PER_PAGE,
   visiblePages: 10,
@@ -34,10 +34,10 @@ const options = {
   },
 };
 
-const paginationCont = document.querySelector('.tui-pagination');
-const pagination = new Pagination(paginationCont, options);
+export const paginationCont = document.querySelector('.tui-pagination');
+export const pagination = new Pagination(paginationCont, options);
 
-const page = pagination.getCurrentPage();
+export const page = pagination.getCurrentPage();
 
 pagination.on('beforeMove', loadMoreTrendingFilms);
 
@@ -64,9 +64,3 @@ async function loadMoreTrendingFilms(e) {
   }
 }
 
-fetchTrending(page)
-  .then(({ results, total_results }) => {
-    pagination.reset(total_results);
-  })
-  .catch(err => {Notify.failure(err.message)
-  pagination.classList.add('is-hidden')});
