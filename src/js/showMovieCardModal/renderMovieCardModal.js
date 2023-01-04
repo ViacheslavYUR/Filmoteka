@@ -1,8 +1,7 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { ifModalNotHidden } from '../storage';
-// import { changeBtnTextContent } from '../storage';
-
+import { dataStorage } from '../storage';
 
 const refs = {
   movieModal: document.querySelector('.movieModal__info'),
@@ -30,6 +29,8 @@ export const renderModalMarkup = ({
   genres,
   overview,
 }) => {
+  localStorage.setItem('movieID', JSON.stringify(dataStorage));
+
   const localMovies = localStorage.getItem('movieID');
   const parsedLocalMovies = JSON.parse(localMovies);
   const queueText = parsedLocalMovies.queue.includes(String(id))
