@@ -1,11 +1,20 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { ifModalNotHidden } from '../storage';
-import { changeBtnTextContent } from '../storage';
+// import { changeBtnTextContent } from '../storage';
+
 
 const refs = {
   movieModal: document.querySelector('.movieModal__info'),
 };
+
+function changeBtnTextContent(evt) {
+  if (dataStorage.watched.includes(evt.target.dataset.id)) {
+    evt.target.textContent = 'Remove from Watched';
+    return (watchedText = evt.target.textContent);
+  }
+  return (evt.target.textContent = 'Add to Watched');
+}
 
 const genresTxt = genres => {
   return genres.map(({ name }) => name).join(', ');
@@ -21,6 +30,14 @@ export const renderModalMarkup = ({
   genres,
   overview,
 }) => {
+  const localMovies = localStorage.getItem('movieID');
+  const parsedLocalMovies = JSON.parse(localMovies);
+  const queueText = parsedLocalMovies.queue.includes(String(id))
+    ? 'Remove from Queue'
+    : 'Add to Queue';
+  const watchedText = parsedLocalMovies.watched.includes(String(id))
+    ? 'Remove from Watched'
+    : 'Add to Watched';
   const markup = `
     <img class="movieModal__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
       <div class="movieModal__wraper">
@@ -68,10 +85,10 @@ export const renderModalMarkup = ({
         </div>
         <div class="movieModal__btns">
           <button class="filmoteca-btn filmoteca-btn--primary" type="button" data-id="${id}" data-modal-close>
-            add to Watched
+            ${watchedText}
           </button>
           <button class="filmoteca-btn filmoteca-btn--secondary" type="button" data-id="${id}" data-modal-close>
-            add to queue
+            ${queueText}
           </button>
         </div>
       </div>
