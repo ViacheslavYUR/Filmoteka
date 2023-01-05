@@ -194,6 +194,7 @@ const onbtnSignInClick = e => {
 
 const logOut = async () => {
   await signOut(auth);
+  document.location.href = 'index.html';
 };
 
 // show Login Error =====================================================================================
@@ -268,14 +269,11 @@ const loginEmailPasspord = async e => {
   }
 
   try {
-    // console.log(auth);
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
       password
     );
-
-    console.log(userCredential);
   } catch (error) {
     showLoginError(error);
   }
@@ -363,6 +361,39 @@ function AddToWatched(uid, filmId, filmName) {
     });
 }
 
+// remove from watched ============================================================================
+
+export const onRemoveFromWatchedBtnClick = async (filmId, filmName) => {
+  try {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        removeFromWatched(user.uid, filmId, filmName);
+      } else {
+        console.log('no user');
+      }
+    });
+  } catch (error) {
+    showLoginError(error);
+  }
+};
+
+function removeFromWatched(uid, filmId) {
+  get(child(dbRef, `users/${uid}/watched/${filmId}`))
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        snapshot.val().remove;
+
+        // update(child(dbRef, `users/${uid}/watched/${filmId}`), postData);
+      } else {
+        // const postData = { watched: { [filmId]: filmName } };
+        // update(child(dbRef, `users/${uid}`), postData);
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
 // add to queue =================================================================================
 
 export const onAddToQueueBtnClick = async (filmId, filmName) => {
@@ -394,43 +425,3 @@ function addToQueue(uid, filmId, filmName) {
       console.error(error);
     });
 }
-
-// функция получения просмотренных фильмов ======================================================
-
-// export const getWatched = async () => {
-//   try {
-//     onAuthStateChanged(auth, user => {
-//       if (user) {
-//         get(child(dbRef, `users/${user.uid}/watched`))
-//           .then(snapshot => {
-//             if (snapshot.exists()) {
-//               console.log(snapshot.val());
-//             } else {
-//               console.log('No data available');
-//             }
-//           })
-//           .catch(error => {
-//             console.error(error);
-//           });
-//       } else {
-//         console.log('no user');
-//       }
-//     });
-//   } catch (error) {
-//     showLoginError(error);
-//   }
-// };
-
-// export function getWatched(uid) {
-//   get(child(dbRef, `users/${uid}/watched`))
-//     .then(snapshot => {
-//       if (snapshot.exists()) {
-//         console.log(snapshot.val());
-//       } else {
-//         console.log('No data available');
-//       }
-//     })
-//     .catch(error => {
-//       console.error(error);
-//     });
-// }

@@ -79,10 +79,10 @@ export const renderModalMarkup = ({
           </p>
         </div>
         <div class="movieModal__btns">
-          <button class="filmoteca-btn filmoteca-btn--primary" type="button" data-id="${id}" data-modal-close>
+          <button class="filmoteca-btn filmoteca-btn--secondary" type="button" data-id="${id}" id="addToWatchedBtn">
             ${watchedText}
           </button>
-          <button class="filmoteca-btn filmoteca-btn--secondary" type="button" data-id="${id}" data-modal-close>
+          <button class="filmoteca-btn filmoteca-btn--secondary" type="button" data-id="${id}" id="addToQueueBtn">
             ${queueText}
           </button>
         </div>
