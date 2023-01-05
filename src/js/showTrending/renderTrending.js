@@ -72,7 +72,7 @@ export const titleSlice = title => {
 export const galleryMarkupСreation = (results, genres) => {
   const markup = results
     .map(
-      ({ poster_path, title, id, genre_ids, release_date }) => `
+      ({ poster_path, title, id, genre_ids, release_date='' }) => `
       <li class="movieCard">
               <a data-id="${id}">
                   <img class="movieCard__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
