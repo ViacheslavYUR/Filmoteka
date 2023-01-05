@@ -15,10 +15,6 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
   async function onOpenModal(e) {
     e.preventDefault();
-    refs.closeModalBtn.addEventListener('click', onCloseModal);
-    window.addEventListener('keydown', onEscKeyPress);
-    refs.modal.classList.remove('backdrop--hidden');
-    refs.body.classList.add('scroll-hidden');
 
     let id;
 
@@ -27,6 +23,14 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
     } else {
       id = e.target.parentElement.dataset.id;
     }
+    if (!id) {
+      return;
+    }
+
+    refs.closeModalBtn.addEventListener('click', onCloseModal);
+    window.addEventListener('keydown', onEscKeyPress);
+    refs.modal.classList.remove('backdrop--hidden');
+    refs.body.classList.add('scroll-hidden');
 
     try {
       const data = await fetchMovieCardModal(id);
