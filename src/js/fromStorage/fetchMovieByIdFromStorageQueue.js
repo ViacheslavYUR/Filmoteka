@@ -34,7 +34,7 @@ async function fetchMovieByIdFromStorageQueue() {
       get(child(dbRef, `users/${user.uid}/queue`))
         .then(snapshot => {
           if (snapshot.exists()) {
-            const savedMovies = Object.keys(snapshot.val());
+            const savedMovies = Object.values(snapshot.val());
             savedMovies.forEach(element => {
               axios
                 .get(

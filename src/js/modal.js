@@ -64,13 +64,15 @@ async function onOpenModal(e) {
 
   onAuthStateChanged(auth, user => {
     if (user) {
-      get(child(dbRef, `users/${user.uid}/watched/${id}`))
+      get(child(dbRef, `users/${user.uid}/watched`))
         .then(snapshot => {
           if (snapshot.exists()) {
-            // console.log(snapshot.val());
-            btnWatched.textContent = 'Remove from Watched';
-            btnWatched.classList.remove('filmoteca-btn--secondary');
-            btnWatched.classList.add('filmoteca-btn--primary');
+            if (Object.values(snapshot.val()).includes(id)) {
+              // console.log(snapshot.val());
+              btnWatched.textContent = 'Remove from Watched';
+              btnWatched.classList.remove('filmoteca-btn--secondary');
+              btnWatched.classList.add('filmoteca-btn--primary');
+            }
           }
         })
         .catch(error => {
@@ -79,13 +81,15 @@ async function onOpenModal(e) {
     }
 
     if (user) {
-      get(child(dbRef, `users/${user.uid}/queue/${id}`))
+      get(child(dbRef, `users/${user.uid}/queue`))
         .then(snapshot => {
           if (snapshot.exists()) {
-            // console.log(snapshot.val());
-            btnQueue.textContent = 'Remove from Queue';
-            btnQueue.classList.remove('filmoteca-btn--secondary');
-            btnQueue.classList.add('filmoteca-btn--primary');
+            if (Object.values(snapshot.val()).includes(id)) {
+              // console.log(snapshot.val());
+              btnQueue.textContent = 'Remove from Queue';
+              btnQueue.classList.remove('filmoteca-btn--secondary');
+              btnQueue.classList.add('filmoteca-btn--primary');
+            }
           }
         })
         .catch(error => {
@@ -98,32 +102,35 @@ async function onOpenModal(e) {
 
   btnWatched.addEventListener('click', () => {
     if (btnWatched.classList.contains('filmoteca-btn--secondary')) {
-      onAddToWatchedBtnClick(id, id);
+      onAddToWatchedBtnClick(id);
       btnWatched.textContent = 'Remove from Watched';
       btnWatched.classList.remove('filmoteca-btn--secondary');
       btnWatched.classList.add('filmoteca-btn--primary');
       btnWatched.blur();
-    }
-
-    if (btnWatched.classList.contains('filmoteca-btn--primary')) {
-      onRemoveFromWatchedBtnClick(id, id);
+    } else {
+      onRemoveFromWatchedBtnClick(id);
       btnWatched.textContent = 'Add to Watched';
       btnWatched.classList.add('filmoteca-btn--secondary');
       btnWatched.classList.remove('filmoteca-btn--primary');
       btnWatched.blur();
     }
 
-    btnWatched.removeEventListener('click', () =>
-      onAddToWatchedBtnClick(id, id)
-    );
+    btnWatched.removeEventListener('click', () => onAddToWatchedBtnClick(id));
   });
 
   btnQueue.addEventListener('click', () => {
-    btnQueue.textContent = 'Remove from Queue';
-    btnQueue.classList.remove('filmoteca-btn--secondary');
-    btnQueue.classList.add('filmoteca-btn--primary');
-    btnQueue.blur();
-    onAddToQueueBtnClick(id, id);
+    if (btnQueue.classList.contains('filmoteca-btn--secondary')) {
+      btnQueue.textContent = 'Remove from Queue';
+      btnQueue.classList.remove('filmoteca-btn--secondary');
+      btnQueue.classList.add('filmoteca-btn--primary');
+      btnQueue.blur();
+      onAddToQueueBtnClick(id);
+    } else {
+      btnQueue.textContent = 'Add to Queue';
+      btnQueue.classList.add('filmoteca-btn--secondary');
+      btnQueue.classList.remove('filmoteca-btn--primary');
+      btnQueue.blur();
+    }
     btnQueue.removeEventListener('click', () => onAddToQueueBtnClick(id, id));
   });
 }

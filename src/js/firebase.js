@@ -303,7 +303,7 @@ export const onBtnGoogleLoginClick = e => {
       get(child(dbRef, `users/${user.uid}`))
         .then(snapshot => {
           if (snapshot.exists()) {
-            console.log(snapshot.val());
+            // console.log(snapshot.val());
           } else {
             writeUserData(
               user.uid,
@@ -331,11 +331,11 @@ export const onBtnGoogleLoginClick = e => {
 
 // add to watched ============================================================================
 
-export const onAddToWatchedBtnClick = async (filmId, filmName) => {
+export const onAddToWatchedBtnClick = async filmId => {
   try {
     onAuthStateChanged(auth, user => {
       if (user) {
-        AddToWatched(user.uid, filmId, filmName);
+        AddToWatched(user.uid, filmId);
       } else {
         console.log('no user');
       }
@@ -345,14 +345,15 @@ export const onAddToWatchedBtnClick = async (filmId, filmName) => {
   }
 };
 
-function AddToWatched(uid, filmId, filmName) {
+function AddToWatched(uid, filmId) {
   get(child(dbRef, `users/${uid}/watched`))
     .then(snapshot => {
       if (snapshot.exists()) {
-        const postData = { [filmId]: filmName };
+        const amount = Array.from(snapshot.val()).length;
+        const postData = { [amount]: filmId };
         update(child(dbRef, `users/${uid}/watched`), postData);
       } else {
-        const postData = { watched: { [filmId]: filmName } };
+        const postData = { watched: { 0: filmId } };
         update(child(dbRef, `users/${uid}`), postData);
       }
     })
@@ -363,11 +364,11 @@ function AddToWatched(uid, filmId, filmName) {
 
 // remove from watched ============================================================================
 
-export const onRemoveFromWatchedBtnClick = async (filmId, filmName) => {
+export const onRemoveFromWatchedBtnClick = async filmId => {
   try {
     onAuthStateChanged(auth, user => {
       if (user) {
-        removeFromWatched(user.uid, filmId, filmName);
+        removeFromWatched(user.uid, filmId);
       } else {
         console.log('no user');
       }
@@ -378,12 +379,14 @@ export const onRemoveFromWatchedBtnClick = async (filmId, filmName) => {
 };
 
 function removeFromWatched(uid, filmId) {
-  get(child(dbRef, `users/${uid}/watched/${filmId}`))
+  get(child(dbRef, `users/${uid}/watched`))
     .then(snapshot => {
       if (snapshot.exists()) {
-        snapshot.val().remove;
-
-        // update(child(dbRef, `users/${uid}/watched/${filmId}`), postData);
+        const Data = Object.values(snapshot.val()).filter(
+          item => item !== filmId
+        );
+        let postData = { watched: Object.assign({}, Data) };
+        update(child(dbRef, `users/${uid}`), postData);
       } else {
         // const postData = { watched: { [filmId]: filmName } };
         // update(child(dbRef, `users/${uid}`), postData);
@@ -394,13 +397,13 @@ function removeFromWatched(uid, filmId) {
     });
 }
 
-// add to queue =================================================================================
+// add to queue ============================================================================
 
-export const onAddToQueueBtnClick = async (filmId, filmName) => {
+export const onAddToQueueBtnClick = async filmId => {
   try {
     onAuthStateChanged(auth, user => {
       if (user) {
-        addToQueue(user.uid, filmId, filmName);
+        addToQueue(user.uid, filmId);
       } else {
         console.log('no user');
       }
@@ -410,15 +413,51 @@ export const onAddToQueueBtnClick = async (filmId, filmName) => {
   }
 };
 
-function addToQueue(uid, filmId, filmName) {
+function addToQueue(uid, filmId) {
   get(child(dbRef, `users/${uid}/queue`))
     .then(snapshot => {
       if (snapshot.exists()) {
-        const postData = { [filmId]: filmName };
+        const amount = Array.from(snapshot.val()).length;
+        const postData = { [amount]: filmId };
         update(child(dbRef, `users/${uid}/queue`), postData);
       } else {
-        const postData = { queue: { [filmId]: filmName } };
+        const postData = { queue: { 0: filmId } };
         update(child(dbRef, `users/${uid}`), postData);
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+// remove from queue ============================================================================
+
+export const onRemoveFromQueueBtnClick = async filmId => {
+  try {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        removeFromQueue(user.uid, filmId);
+      } else {
+        console.log('no user');
+      }
+    });
+  } catch (error) {
+    showLoginError(error);
+  }
+};
+
+function removeFromQueue(uid, filmId) {
+  get(child(dbRef, `users/${uid}/queue`))
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        const Data = Object.values(snapshot.val()).filter(
+          item => item !== filmId
+        );
+        let postData = { queue: Object.assign({}, Data) };
+        update(child(dbRef, `users/${uid}`), postData);
+      } else {
+        // const postData = { queue: { [filmId]: filmName } };
+        // update(child(dbRef, `users/${uid}`), postData);
       }
     })
     .catch(error => {
