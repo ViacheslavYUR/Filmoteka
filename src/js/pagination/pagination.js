@@ -1,12 +1,13 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { Loading, Notify } from 'notiflix';
-
 import { fetchTrending } from '../showTrending/fetchTrending';
 import { fetchGenres } from '../fetchGenres';
 import * as render from '../showTrending/renderTrending';
+import { movieApiService } from '../inputSearch/inputMovieSearch';
 
 const PER_PAGE = 20;
+
 
 const gallery = document.querySelector('.gallery');
 
@@ -39,28 +40,45 @@ export const pagination = new Pagination(paginationCont, options);
 
 export const page = pagination.getCurrentPage();
 
+
 pagination.on('beforeMove', loadMoreTrendingFilms);
 
-async function loadMoreTrendingFilms(e) {
+export async function loadMoreTrendingFilms(e) {
   const currentPage = e.page;
+  Loading.hourglass();
   try {
     const { results, total_results, total_pages } = await fetchTrending(
       currentPage
     );
-    // console.log('results ', results);
-    // console.log('total_results ', total_results);
-    // console.log('total_pages', total_pages);
     const { genres } = await fetchGenres();
-    // console.log('genres ', genres);
     if (total_results > 0) {
-      Loading.hourglass();
-      gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
-      Loading.remove();
+      gallery.innerHTML =  render.galleryMarkupСreation(results, genres);
       return;
     }
   } catch (err) {
     Notify.failure(err.message);
-    pagination.classList.add('js-hidden');
+    paginationCont.classList.add('js-hidden');
+  } finally {
+    Loading.remove();
+    window.scroll(0,0)
   }
 }
 
+export async function loadMoreFilmsByQuery(e) {
+  const currentPage = e.page;
+  Loading.hourglass();
+  try {
+    const { results } = await movieApiService.getMovie(currentPage);
+    console.log(results)
+    const { genres } = await fetchGenres();
+    gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
+  } catch (err) {
+    Notify.failure(err.message);
+    paginationCont.classList.add('js-hidden');
+  }
+
+  finally {
+    Loading.remove();
+    window.scroll(0,0)
+  }
+}
