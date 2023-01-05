@@ -35,8 +35,8 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
         renderModalMarkup(data);
         Loading.remove();
       } else {
-        console.error(error);
-      }
+        onCloseModal();
+      } 
     } catch (error) {
       console.error(error.message);
     }
