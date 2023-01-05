@@ -1,7 +1,7 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { Loading, Notify } from 'notiflix';
-
+import { movieApiService } from '../inputSearch/inputMovieSearch';
 import { fetchTrending } from '../showTrending/fetchTrending';
 import { fetchGenres } from '../fetchGenres';
 import * as render from '../showTrending/renderTrending';
@@ -16,7 +16,7 @@ export const options = {
   visiblePages: 10,
   page: 1,
   template: {
-    page: '<a href="&" class="tui-page-btn">{{page}}</a>',
+    page: '<a href="&" class="tui-page-btn page-button">{{page}}</a>',
     currentPage:
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
@@ -47,11 +47,7 @@ async function loadMoreTrendingFilms(e) {
     const { results, total_results, total_pages } = await fetchTrending(
       currentPage
     );
-    // console.log('results ', results);
-    // console.log('total_results ', total_results);
-    // console.log('total_pages', total_pages);
     const { genres } = await fetchGenres();
-    // console.log('genres ', genres);
     if (total_results > 0) {
       Loading.hourglass();
       gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
@@ -61,6 +57,35 @@ async function loadMoreTrendingFilms(e) {
   } catch (err) {
     Notify.failure(err.message);
     pagination.classList.add('js-hidden');
+  } finally {
+    Loading.remove();
+    window.scroll(0, 0);
   }
 }
 
+export async function loadMoreFilmsByQuery(e) {
+  const currentPage = e.page;
+  Loading.hourglass();
+  try {
+    const { results } = await movieApiService.getMovie(currentPage);
+    console.log(results);
+    const { genres } = await fetchGenres();
+    gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
+  } catch (err) {
+    pagination.classList.add('js-hidden');
+    Notify.failure(err.message);
+  } finally {
+    Loading.remove();
+    window.scroll(0, 0);
+  }
+}
+
+// ------------------- for styles
+
+// const paginationButtons = document.querySelectorAll('a[href*="&"]');
+// console.log(paginationButtons)
+
+// paginationBtns.forEach(paginationBtn => {
+//   console.log(paginationBtn);
+//   paginationBtn.style.borderColor = 'teal';
+// });
