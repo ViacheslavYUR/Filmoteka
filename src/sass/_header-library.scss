@@ -1,6 +1,9 @@
 @import './utils/mixins';
+@import './user';
+@import './signInModal';
 
 .header .container {
+  position: relative;
   padding-top: 40px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(../images/mobile/rectangle-mob.jpg);

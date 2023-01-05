@@ -10,6 +10,8 @@ import './js/modalTeam/teamModal';
 import './js/modalTeam/renderTeam';
 import './js/vanilla';
 import './js/modal';
+import './js/firebase';
+import './js/signInModal';
 
 smoothscroll();
 window.addEventListener('scroll', hideScrollUpBtn);

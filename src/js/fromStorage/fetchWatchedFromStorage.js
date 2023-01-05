@@ -1,5 +1,18 @@
 import axios from 'axios';
 import { renderWatchedMarkup } from './renderWatchedMarkup';
+import { auth, dbRef } from '../firebase';
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue,
+  child,
+  get,
+  push,
+  update,
+} from 'firebase/database';
+
+import { onAuthStateChanged } from 'firebase/auth';
 
 // const myLibrLink = document.querySelector('.header-nav_libr');
 const btnQueue = document.querySelector('.header_btn-queue');
@@ -15,34 +28,36 @@ async function fetchMovieByIdFromStorageWatched() {
   btnQueue.classList.remove('current-btn');
   btnWatched.classList.add('current-btn');
 
-  const savedMovies = localStorage.getItem('movieID');
-  const parsedMovies = JSON.parse(savedMovies);
+  // const savedMovies = await JSON.parse(getWatched());
+  // const parsedMovies = JSON.parse(savedMovies);
   // console.log(parsedMovies);
 
   gallery.innerHTML = '';
 
-  for (let movieId of parsedMovies.watched) {
-    // console.log(
-    //   'fetchMovieByIdFromStorageWatched ~ parsedMovies.watched',
-    //   parsedMovies.watched
-    // );
-    // console.log('Here is your movies ID:', movieId);
-
-    try {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
-      );
-      // renderWatchedMarkup(data);
-      // console.log(data);
-      renderWatchedMarkup(data);
-      // запускаем функцию один раз, иначе уходит в infinity loop
-      //   fetchMovieByIdFromStorageWatched = function () {
-      //     return false;
-      //   };
-    } catch (error) {
-      console.error(error.message);
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      get(child(dbRef, `users/${user.uid}/watched`))
+        .then(snapshot => {
+          if (snapshot.exists()) {
+            const savedMovies = Object.keys(snapshot.val());
+            savedMovies.forEach(element => {
+              axios
+                .get(
+                  `https://api.themoviedb.org/3/movie/${element}?api_key=${API_KEY}&language=en-US`
+                )
+                .then(({ data }) => renderWatchedMarkup(data));
+            });
+          } else {
+            console.log('No data available');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    } else {
+      console.log('no user');
     }
-  }
+  });
 }
 
 fetchMovieByIdFromStorageWatched();
