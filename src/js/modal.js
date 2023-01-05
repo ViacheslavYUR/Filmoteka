@@ -1,6 +1,8 @@
 import { fetchMovieCardModal } from './showMovieCardModal/fetchMovieCardModal';
 import { renderModalMarkup } from './showMovieCardModal/renderMovieCardModal';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { fetchMovieTreiler } from './showMovieCardModal/fetchMovieTreiler';
+import { renderTrailer } from './showMovieCardModal/renderTreiler';
 
 (() => {
   const refs = {
@@ -38,6 +40,17 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
     } catch (error) {
       console.error(error.message);
     }
+
+         try {
+           const data = await fetchMovieTreiler(id);
+           if (data) {
+             renderTrailer(data.results[0]);
+           } else {
+             console.error(error);
+           }
+         } catch (error) {
+           console.error(error.message);
+         }
   }
 
   function onCloseModal() {

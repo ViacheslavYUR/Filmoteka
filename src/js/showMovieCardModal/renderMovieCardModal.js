@@ -78,6 +78,7 @@ export const renderModalMarkup = ({
             ${overview}
           </p>
         </div>
+                <div class="movieModal__trailer"></div>
         <div class="movieModal__btns">
           <button class="filmoteca-btn filmoteca-btn--primary" type="button" data-id="${id}" data-modal-close>
             ${watchedText}
