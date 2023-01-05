@@ -7,16 +7,18 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
     openModalBtn: document.querySelector('[data-modal-open]'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
     modal: document.querySelector('[data-modal]'),
+    body: document.querySelector('body'),
   };
 
   refs.openModalBtn.addEventListener('click', onOpenModal);
   refs.modal.addEventListener('click', onBackdropClick);
 
   async function onOpenModal(e) {
+    e.preventDefault();
     refs.closeModalBtn.addEventListener('click', onCloseModal);
     window.addEventListener('keydown', onEscKeyPress);
     refs.modal.classList.remove('backdrop--hidden');
-    e.preventDefault();
+    refs.body.classList.add('scroll-hidden');
 
     let id;
 
@@ -43,13 +45,12 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
   function onCloseModal() {
     window.removeEventListener('keydown', onEscKeyPress);
     refs.modal.classList.add('backdrop--hidden');
+    refs.body.classList.remove('scroll-hidden');
     document.querySelector('.movieModal__info').innerHTML = '';
-    // console.log('Клікнув в close!!!!');
   }
 
   function onBackdropClick(event) {
     if (event.currentTarget === event.target) {
-      // console.log('Клікнув в Backdrop!!!!');
       onCloseModal();
     }
   }
@@ -61,6 +62,5 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
     if (isEscKey) {
       onCloseModal();
     }
-    // console.log('Нажав в ESC_KEY_CODE!!!!');
   }
 })();
