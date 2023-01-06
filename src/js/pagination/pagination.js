@@ -69,7 +69,7 @@ export async function loadMoreFilmsByQuery(e) {
   Loading.hourglass();
   try {
     const { results } = await movieApiService.getMovie(currentPage);
-    console.log(results);
+    // console.log(results);
     const { genres } = await fetchGenres();
     gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
   } catch (err) {

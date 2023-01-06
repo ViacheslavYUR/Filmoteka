@@ -1,7 +1,10 @@
 
-
 @media screen and (max-width:767px) {
   .tui-page-btn.tui-first, .tui-page-btn.tui-last, .tui-page-btn.tui-next-is-ellip {
       display: none;
   }
+}
+
+.tui-page-btn {
+  background-color: #ddd;
 }

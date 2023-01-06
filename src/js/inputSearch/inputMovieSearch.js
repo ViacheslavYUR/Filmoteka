@@ -6,8 +6,6 @@ import * as tuiPagination from '../pagination/pagination';
 
 export const movieApiService = new MovieApiService();
 
-
-
 const refs = {
   searchMovie: document.querySelector('.searchForm'),
   gallery: document.querySelector('.gallery'),
@@ -40,15 +38,21 @@ export async function handleInputSearchMovie(e) {
 
   const response = await movieApiService.getMovie(tuiPagination.page);
   const results = response.results;
-  tuiPagination.pagination.off('beforeMove', tuiPagination.loadMoreTrendingFilms);
-  tuiPagination.pagination.off('beforeMove', tuiPagination.loadMoreFilmsByQuery);
+  console.log(results)
+  tuiPagination.pagination.off(
+    'beforeMove',
+    tuiPagination.loadMoreTrendingFilms
+  );
+  tuiPagination.pagination.off(
+    'beforeMove',
+    tuiPagination.loadMoreFilmsByQuery
+  );
   tuiPagination.pagination.on('beforeMove', tuiPagination.loadMoreFilmsByQuery);
   tuiPagination.pagination.reset(movieApiService.totalResults);
   const { genres } = await fetchGenres();
- 
 
   if (results.length === 0) {
-    tuiPagination.paginationCont.classList.add('js-hidden')
+    tuiPagination.paginationCont.classList.add('js-hidden');
     Notify.info(
       'Search result not successful. Enter the correct movie name and',
       {
@@ -61,9 +65,12 @@ export async function handleInputSearchMovie(e) {
     return;
   }
 
+   
+
   clearRender();
-  
+
   refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
+  tuiPagination.paginationCont.classList.remove('js-hidden');
 }
 
 function clearRender() {

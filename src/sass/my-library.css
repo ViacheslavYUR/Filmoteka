@@ -372,6 +372,10 @@ body {
     display: none;
   }
 }
+.tui-page-btn {
+  background-color: #ddd;
+}
+
 .footer {
   background-color: #f7f7f7;
 }
