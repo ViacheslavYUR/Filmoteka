@@ -8,8 +8,6 @@ export const movieApiService = new MovieApiService();
 
 
 
-console.log(movieApiService.page)
-
 const refs = {
   searchMovie: document.querySelector('.searchForm'),
   gallery: document.querySelector('.gallery'),
@@ -42,7 +40,6 @@ export async function handleInputSearchMovie(e) {
 
   const response = await movieApiService.getMovie(tuiPagination.page);
   const results = response.results;
-  
   tuiPagination.pagination.off('beforeMove', tuiPagination.loadMoreTrendingFilms);
   tuiPagination.pagination.off('beforeMove', tuiPagination.loadMoreFilmsByQuery);
   tuiPagination.pagination.on('beforeMove', tuiPagination.loadMoreFilmsByQuery);

@@ -2,7 +2,6 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { fetchTrending } from './fetchTrending';
 import { fetchGenres } from '../fetchGenres';
-import 'tui-pagination/dist/tui-pagination.css';
 import * as tuiPagination from '../pagination/pagination';
 
 const refs = {
@@ -17,7 +16,6 @@ export const renderMarkup = async () => {
     const { page, results, total_pages, total_results } = await fetchTrending();
     const { genres } = await fetchGenres();
     tuiPagination.pagination.reset(total_results);
-
     if (total_results > 0) {
       Loading.hourglass();
 
@@ -94,3 +92,4 @@ export const galleryMarkupСreation = (results, genres) => {
 };
 
 renderMarkup();
+

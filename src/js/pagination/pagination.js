@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+// import 'tui-pagination/dist/tui-pagination.css';
 import { Loading, Notify } from 'notiflix';
 import { fetchTrending } from '../showTrending/fetchTrending';
 import { fetchGenres } from '../fetchGenres';
@@ -8,14 +8,13 @@ import { movieApiService } from '../inputSearch/inputMovieSearch';
 
 const PER_PAGE = 20;
 
-
 const gallery = document.querySelector('.gallery');
 
-export const options = {
+const options = {
   totalItems: 0,
   itemsPerPage: PER_PAGE,
-  visiblePages: 10,
   page: 1,
+  visiblePages: 5,
   template: {
     page: '<a href="&" class="tui-page-btn">{{page}}</a>',
     currentPage:
@@ -38,8 +37,9 @@ export const options = {
 export const paginationCont = document.querySelector('.tui-pagination');
 export const pagination = new Pagination(paginationCont, options);
 
-export const page = pagination.getCurrentPage();
 
+
+export const page = pagination.getCurrentPage();
 
 pagination.on('beforeMove', loadMoreTrendingFilms);
 
@@ -52,7 +52,7 @@ export async function loadMoreTrendingFilms(e) {
     );
     const { genres } = await fetchGenres();
     if (total_results > 0) {
-      gallery.innerHTML =  render.galleryMarkupСreation(results, genres);
+      gallery.innerHTML = render.galleryMarkupСreation(results, genres);
       return;
     }
   } catch (err) {
@@ -60,7 +60,7 @@ export async function loadMoreTrendingFilms(e) {
     paginationCont.classList.add('js-hidden');
   } finally {
     Loading.remove();
-    window.scroll(0,0)
+    window.scroll(0, 0);
   }
 }
 
@@ -69,16 +69,15 @@ export async function loadMoreFilmsByQuery(e) {
   Loading.hourglass();
   try {
     const { results } = await movieApiService.getMovie(currentPage);
-    console.log(results)
+    console.log(results);
     const { genres } = await fetchGenres();
     gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
   } catch (err) {
     Notify.failure(err.message);
     paginationCont.classList.add('js-hidden');
-  }
-
-  finally {
+  } finally {
     Loading.remove();
-    window.scroll(0,0)
+    window.scroll(0, 0);
   }
 }
+
