@@ -55,27 +55,6 @@ export const dbRef = ref(db);
 
 // connectAuthEmulator(auth, 'http://localhost:9099/');
 
-// data base ===============================================================
-
-function writeUserData(userId, name, email, imageUrl) {
-  set(ref(db, 'users/' + userId), {
-    username: name,
-    email: email,
-    profile_picture: imageUrl,
-  });
-}
-
-// const userId = auth.currentUser.uid;
-// return onValue(
-//   ref(db, '/users/' + userId),
-//   snapshot => {
-//     const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-//     // ...
-//   },
-//   {
-//     onlyOnce: true,
-//   }
-// );
 // ============================================================================
 
 const refs = {
@@ -329,6 +308,18 @@ export const onBtnGoogleLoginClick = e => {
     });
 };
 
+// data base =================================================================================
+
+// add User in DB ============================================================================
+
+function writeUserData(userId, name, email, imageUrl) {
+  set(ref(db, 'users/' + userId), {
+    username: name,
+    email: email,
+    profile_picture: imageUrl,
+  });
+}
+
 // add to watched ============================================================================
 
 export const onAddToWatchedBtnClick = async filmId => {
@@ -453,11 +444,10 @@ function removeFromQueue(uid, filmId) {
         const Data = Object.values(snapshot.val()).filter(
           item => item !== filmId
         );
+
         let postData = { queue: Object.assign({}, Data) };
+
         update(child(dbRef, `users/${uid}`), postData);
-      } else {
-        // const postData = { queue: { [filmId]: filmName } };
-        // update(child(dbRef, `users/${uid}`), postData);
       }
     })
     .catch(error => {

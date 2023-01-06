@@ -1,3 +1,5 @@
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import axios from 'axios';
 import { renderWatchedMarkup } from './renderWatchedMarkup';
 import { auth, dbRef } from '../firebase';
@@ -48,7 +50,10 @@ async function fetchMovieByIdFromStorageWatched() {
                 .then(({ data }) => renderWatchedMarkup(data));
             });
           } else {
-            console.log('No data available');
+            Report.info(
+              'No movies in collection now',
+              'Add movies to see them here'
+            );
           }
         })
         .catch(error => {

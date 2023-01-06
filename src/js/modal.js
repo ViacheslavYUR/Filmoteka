@@ -1,6 +1,7 @@
 import { fetchMovieCardModal } from './showMovieCardModal/fetchMovieCardModal';
 import { renderModalMarkup } from './showMovieCardModal/renderMovieCardModal';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { renderWatchedMarkup } from './fromStorage/renderWatchedMarkup';
 
 import {
   getDatabase,
@@ -17,6 +18,7 @@ import {
   onAddToWatchedBtnClick,
   onAddToQueueBtnClick,
   onRemoveFromWatchedBtnClick,
+  onRemoveFromQueueBtnClick,
   auth,
   dbRef,
 } from './firebase';
@@ -120,17 +122,19 @@ async function onOpenModal(e) {
 
   btnQueue.addEventListener('click', () => {
     if (btnQueue.classList.contains('filmoteca-btn--secondary')) {
+      onAddToQueueBtnClick(id);
       btnQueue.textContent = 'Remove from Queue';
       btnQueue.classList.remove('filmoteca-btn--secondary');
       btnQueue.classList.add('filmoteca-btn--primary');
       btnQueue.blur();
-      onAddToQueueBtnClick(id);
     } else {
+      onRemoveFromQueueBtnClick(id);
       btnQueue.textContent = 'Add to Queue';
       btnQueue.classList.add('filmoteca-btn--secondary');
       btnQueue.classList.remove('filmoteca-btn--primary');
       btnQueue.blur();
     }
+
     btnQueue.removeEventListener('click', () => onAddToQueueBtnClick(id, id));
   });
 }
@@ -140,6 +144,9 @@ function onCloseModal() {
   refs.modal.classList.add('backdrop--hidden');
   document.querySelector('.movieModal__info').innerHTML = '';
 
+  if (window.location.pathname === '/my-library.html') {
+    window.location.reload();
+  }
   // console.log('Клікнув в close!!!!');
 }
 

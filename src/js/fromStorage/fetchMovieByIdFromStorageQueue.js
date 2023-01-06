@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { renderQueueMarkup } from './renderQueueMarkup';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import { auth, dbRef } from '../firebase';
 import {
@@ -43,7 +44,10 @@ async function fetchMovieByIdFromStorageQueue() {
                 .then(({ data }) => renderQueueMarkup(data));
             });
           } else {
-            console.log('No data available');
+            Report.info(
+              'No movies in collection now',
+              'Add movies to see them here'
+            );
           }
         })
         .catch(error => {
