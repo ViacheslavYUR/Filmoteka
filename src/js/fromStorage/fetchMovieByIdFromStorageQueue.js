@@ -16,6 +16,8 @@ import {
 
 import { onAuthStateChanged } from 'firebase/auth';
 
+export { fetchMovieByIdFromStorageQueue };
+
 const btnQueue = document.querySelector('.header_btn-queue');
 const btnWatched = document.querySelector('.header_btn-watched');
 const gallery = document.querySelector('.gallery');

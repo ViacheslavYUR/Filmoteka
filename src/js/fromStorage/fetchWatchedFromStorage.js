@@ -26,6 +26,8 @@ const API_KEY = 'ac91775ba29254b7e75060011bf34a90';
 // myLibrLink.addEventListener('click', fetchMovieByIdFromStorageWatched);
 btnWatched.addEventListener('click', fetchMovieByIdFromStorageWatched);
 
+export { fetchMovieByIdFromStorageWatched };
+
 async function fetchMovieByIdFromStorageWatched() {
   btnQueue.classList.remove('current-btn');
   btnWatched.classList.add('current-btn');
@@ -50,6 +52,7 @@ async function fetchMovieByIdFromStorageWatched() {
                 .then(({ data }) => renderWatchedMarkup(data));
             });
           } else {
+            // console.log('No data available');
             Report.info(
               'No movies in collection now',
               'Add movies to see them here'
