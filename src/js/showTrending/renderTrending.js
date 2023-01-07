@@ -68,6 +68,13 @@ export const titleSlice = title => {
     return title;
   }
 };
+function addStubPicture(urlTemplate, poster_path, urlStub) {
+  if (poster_path !== null) {
+    return urlTemplate + poster_path;
+  } else {
+    return urlStub;
+  }
+}
 
 export const galleryMarkupСreation = (results, genres) => {
   const markup = results
@@ -92,4 +99,3 @@ export const galleryMarkupСreation = (results, genres) => {
 };
 
 renderMarkup();
-
