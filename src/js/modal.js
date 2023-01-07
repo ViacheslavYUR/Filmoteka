@@ -31,6 +31,7 @@ const refs = {
   closeModalBtn: document.querySelector('[data-modal-close]'),
   modal: document.querySelector('[data-modal]'),
   headerBtnQueue: document.querySelector('header_btn-queue'),
+  body: document.querySelector('body'),
 };
 
 refs.openModalBtn.addEventListener('click', onOpenModal);
@@ -49,6 +50,10 @@ async function onOpenModal(e) {
   } else {
     id = e.target.parentElement.dataset.id;
   }
+  if (!id) {
+    return;
+  }
+  refs.body.classList.add('scroll-hidden');
 
   try {
     const data = await fetchMovieCardModal(id);
@@ -168,6 +173,7 @@ async function onOpenModal(e) {
 function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyPress);
   refs.modal.classList.add('backdrop--hidden');
+  refs.body.classList.remove('scroll-hidden');
   document.querySelector('.movieModal__info').innerHTML = '';
   // console.log('Клікнув в close!!!!');
 
