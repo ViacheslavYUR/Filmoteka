@@ -14,17 +14,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap:16px;
 }
 
 .tui-custom {
   font-size: $font-size;
   text-decoration: none;
-  width: 40px;
+  // width: 40px;
   display: flex;
   font-weight: 500;
   line-height: 1.25;
-  height: 40px;
-  color:$first-font-color;
+  // height: 40px;
+  color: $first-font-color;
   background-color: $white;
   border: none;
   outline: none;
@@ -35,16 +36,45 @@
 
 .tui-custom-is-selected {
   background-color: $accent-color;
-  color:$white;
+  color: $white;
+  width: 40px;
+  height: 40px;
 }
 
-#pagination .tui-prev, #pagination.tui-next  {
+#pagination .tui-prev,
+#pagination .tui-next {
   width: 40px;
   height: 40px;
   border-radius: 5px;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 }
 
-#pagination .tui-ico-next, #pagination .tui-ico-prev {
+#pagination .tui-ico-next,
+#pagination .tui-ico-prev {
   color: $first-font-color;
+}
+
+.tui-pagination .tui-ico-ellip {
+  vertical-align: center;
+  margin: 0;
+}
+
+.tui-custom.tui-next-is-ellip {
+  border: none;
+  outline: none;
+}
+
+.tui-custom.tui-prev-is-ellip {
+  border: none;
+  outline: none;
+}
+
+.tui-custom.tui-next {
+  border: none;
+  outline: none;
+}
+
+.tui-custom.tui-prev {
+  border: none;
+  outline: none;
 }

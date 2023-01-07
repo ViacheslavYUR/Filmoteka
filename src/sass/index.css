@@ -448,7 +448,7 @@ body {
   color: #ffffff;
 }
 
-#pagination .tui-prev, #pagination.tui-next {
+#pagination .tui-prev, #pagination .tui-next {
   width: 40px;
   height: 40px;
   border-radius: 5px;
