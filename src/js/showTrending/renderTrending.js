@@ -77,6 +77,9 @@ function addStubPicture(urlTemplate, poster_path, urlStub) {
 }
 
 export const galleryMarkupСreation = (results, genres) => {
+  const urlStub =
+    'http://www.posterterritory.com/wp-content/uploads/2022/02/Nikodem-Pre%CC%A8gowski-717x1024.jpeg';
+  const urlTemplate = 'https://image.tmdb.org/t/p/w500';
   const markup = results
     .map(
       ({ poster_path, title, id, genre_ids, release_date = '' }) => `
