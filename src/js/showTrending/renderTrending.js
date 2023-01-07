@@ -68,14 +68,28 @@ export const titleSlice = title => {
     return title;
   }
 };
+function addStubPicture(urlTemplate, poster_path, urlStub) {
+  if (poster_path !== null) {
+    return urlTemplate + poster_path;
+  } else {
+    return urlStub;
+  }
+}
 
 export const galleryMarkupСreation = (results, genres) => {
+  const urlStub =
+    'http://www.posterterritory.com/wp-content/uploads/2022/02/Nikodem-Pre%CC%A8gowski-717x1024.jpeg';
+  const urlTemplate = 'https://image.tmdb.org/t/p/w500';
   const markup = results
     .map(
       ({ poster_path, title, id, genre_ids, release_date = '' }) => `
       <li class="movieCard">
               <a data-id="${id}">
-                  <img class="movieCard__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
+                  <img class="movieCard__image" src="${addStubPicture(
+                    urlTemplate,
+                    poster_path,
+                    urlStub
+                  )}" alt="movieImg" />
                   <p class="movieCard__info movieCard__title">${titleSlice(
                     title
                   )}</p>
@@ -92,4 +106,3 @@ export const galleryMarkupСreation = (results, genres) => {
 };
 
 renderMarkup();
-
