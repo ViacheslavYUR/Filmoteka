@@ -68,6 +68,7 @@ export const titleSlice = title => {
     return title;
   }
 };
+
 function addStubPicture(urlTemplate, poster_path, urlStub) {
   if (poster_path !== null) {
     return urlTemplate + poster_path;

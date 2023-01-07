@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 
+import { onBackdropClick, onEscKeyPress } from './modal';
+
 import {
   getAuth,
   onAuthStateChanged,
@@ -87,25 +89,58 @@ const refs = {
   signUpPassword: document.querySelector('#passwordSignUp'),
   loginPhone: document.querySelector('#phone'),
   loginPhoneCode: document.querySelector('#loginPhoneCode'),
-
+  modal: document.querySelector('[data-signInModal]'),
   userName: document.querySelector('.user__name'),
   formField: document.querySelector('.auth-form__field'),
   formTitle: document.querySelector('.auth-form__title'),
+  body: document.querySelector('body'),
 };
 
 // close Modal Func auth =====================================================================================
 
-export const closeModalFunc = () => {
+const closeModalFunc = () => {
   refs.btnCloseModal.addEventListener('click', () => {
     refs.backdrop.classList.add('backdrop--hidden');
-    refs.boxSignInWithEmailModal.classList.add('visually-hidden');
-    refs.boxSignUpWithEmail.classList.add('visually-hidden');
-    // refs.boxLogInWithPhone.classList.add('visually-hidden');
-    refs.boxSignInModal.classList.remove('visually-hidden');
+    refs.body.classList.remove('scroll-hidden');
+  });
+
+  window.addEventListener('keydown', e => {
+    const ESC_KEY_CODE = 'Escape';
+    const isEscKey = e.code === ESC_KEY_CODE;
+    if (isEscKey) {
+      refs.backdrop.classList.add('backdrop--hidden');
+      refs.body.classList.remove('scroll-hidden');
+    }
+  });
+
+  refs.backdrop.addEventListener('click', e => {
+    if (event.currentTarget === event.target) {
+      refs.backdrop.classList.add('backdrop--hidden');
+      refs.body.classList.remove('scroll-hidden');
+    }
   });
 
   if (refs.backdrop.classList.contains('backdrop--hidden')) {
-    btnCloseModal.removeEventListener('click', toggleModal);
+    refs.btnCloseModal.removeEventListener('click', () => {
+      refs.backdrop.classList.add('backdrop--hidden');
+      refs.body.classList.remove('scroll-hidden');
+    });
+
+    window.removeEventListener('keydown', e => {
+      const ESC_KEY_CODE = 'Escape';
+      const isEscKey = e.code === ESC_KEY_CODE;
+      if (isEscKey) {
+        refs.backdrop.classList.add('backdrop--hidden');
+        refs.body.classList.remove('scroll-hidden');
+      }
+    });
+
+    refs.backdrop.removeEventListener('click', e => {
+      if (event.currentTarget === event.target) {
+        refs.backdrop.classList.add('backdrop--hidden');
+        refs.body.classList.remove('scroll-hidden');
+      }
+    });
   }
 };
 
@@ -144,6 +179,7 @@ const monitorAuthState = async () => {
         refs.backdrop.classList.add('backdrop--hidden');
         refs.btnLogOut.addEventListener('click', logOut);
         refs.btnSignIn.removeEventListener('click', onbtnSignInClick);
+        refs.body.classList.remove('scroll-hidden');
       } else {
         refs.boxUser.innerHTML = `<p class="user__name">Hello Stranger</p>`;
         refs.navigation.innerHTML = ``;
@@ -168,6 +204,7 @@ const onbtnSignInClick = e => {
   refs.btnGoogleLogin.addEventListener('click', onBtnGoogleLoginClick);
   refs.btnLoginWithEmail.addEventListener('click', onbtnLoginWithEmailClick);
   refs.btnSignUpWithEmail.addEventListener('click', onBtnSignUpWithEmailClick);
+  refs.body.classList.add('scroll-hidden');
   closeModalFunc();
 };
 
