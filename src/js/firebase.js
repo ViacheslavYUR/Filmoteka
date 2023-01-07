@@ -120,8 +120,8 @@ const monitorAuthState = async () => {
         switch (true) {
           case user.displayName !== null && user.photoURL !== null:
             refs.boxUser.innerHTML = `<img class="user__img" src= ${user.photoURL} alt="" />
-                                  <p class="user__greeting">Good to see You again</p>
-                                  <p class="user__name"> ${user.displayName}</p>`;
+                                  <div class="user__info"><p class="user__greeting">Good to see You again</p>
+                                  <p class="user__name"> ${user.displayName}</p></div>`;
             break;
 
           case user.displayName === null && user.photoURL === null:

@@ -1,17 +1,20 @@
 .header {
   height: 230px;
-  background: linear-gradient(#0082d1 50%, #ffd100 50%);
-
+  // background: linear-gradient(#0082d1 50%, #ffd100 50%);
   @media screen and (min-width: 768px) {
     height: 216px;
   }
 }
 .container__header {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   padding-top: 40px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 20px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -43,19 +46,21 @@
   }
 
   @media screen and (min-width: 768px) {
-    padding-top: 45px;
     padding-left: 30px;
     padding-right: 30px;
+    padding-bottom: 40px;
+    justify-content: normal;
   }
 }
 .navigation {
   position: relative;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-left: auto;
   color: $white;
-  margin-bottom: 54px;
+  // margin-bottom: 50px;
   @media screen and (min-width: 768px) {
+    // justify-content: flex-start;
     margin-bottom: 40px;
   }
 }
@@ -73,6 +78,7 @@
     @media screen and (min-width: 768px) {
       display: inline;
       margin-left: 10px;
+      margin-right: 50px;
 
       font-family: $font-family;
       font-style: normal;
@@ -99,7 +105,9 @@
 
 .navigation__list {
   display: flex;
-  margin-left: 40px;
+  @media screen and (min-width: 768px) {
+    margin-right: 100px;
+  }
 }
 
 .navigation__item {
@@ -111,7 +119,7 @@
 .navigation__link {
   font-weight: 500;
   line-height: 14px;
-  padding-bottom: 3px;
+  padding: 5px;
   position: relative;
   display: block;
   opacity: 95%;
@@ -140,6 +148,7 @@
 
 .searchForm {
   position: relative;
+  // margin-bottom: 20px;
   border-bottom: 0.5px solid white;
   @media screen and (min-width: 768px) {
     width: 336px;
@@ -154,7 +163,8 @@
   & input {
     width: 100%;
     height: 20px;
-    padding-right: 20px;
+
+    padding-right: 30px;
     font-size: 14px;
     line-height: 1.14;
     color: $white;
@@ -176,11 +186,11 @@
     position: absolute;
     right: 0px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(25%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px;
+    padding: 12.5px;
     background-color: transparent;
     border: 0;
     transition-property: scale;
@@ -190,7 +200,7 @@
 
     &:hover,
     &:focus {
-      scale: 1.3;
+      scale: 1.1;
       color: white;
     }
 
@@ -201,8 +211,8 @@
 
   &__icon {
     fill: inherit;
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
   }
 }
 
