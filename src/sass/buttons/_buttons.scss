@@ -71,10 +71,11 @@
   }
 
   &--auth {
+    padding: 5px 10px;
     color: $white;
     background-color: $accent-color;
     &-icon {
-      margin-right: 20px;
+      margin-right: 10px;
       fill: $white;
     }
   }
