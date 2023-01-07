@@ -1,7 +1,26 @@
+@import './utils/mixins';
+
+.scroll-hidden {
+  overflow: hidden;
+}
+
 /* backdrop для модалки з комадою */
-.backdrop-contacts {
+.backdrop-team {
+  padding-top: 92px;
+  padding-bottom: 92px;
   padding-left: 10px;
   padding-right: 10px;
+  overflow-y: auto;
+ 
+  @include tab {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  @include desk {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 /* Модалка з командою*/
@@ -9,24 +28,42 @@
 .modal-team{
   position: relative;
   font-weight: 500;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 806px;
-  min-height: 558px;
-  padding: 20px 20px;
+  max-width: 280px;
+  min-height: 200px;
+  margin: 0 auto;
+  padding: 24px 8px 8px 8px;
   z-index: 888;
   background-color: $background-color;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+
+  @include tab {
+    max-width: none;
+    width: 600px;
+    padding: 20px 20px 8px 20px;
+  }
+
+  @include desk {
+    width: 806px;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    margin: 0;
+  }
 }
 
 .modal-team__header{
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.12;
   color: $accent-color;
   
+  @include desk {
+    font-size: 28px;
+  }
+
 }
 
 .team-members__wrapper{
@@ -38,8 +75,17 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 20px;
   justify-content: center;
+  margin-top: 8px;
+
+  @include tab {
+    gap: 12px;
+  }
+
+  @include desk{
+    gap: 10px;
+    margin-top: 20px;
+  }
 }
 
 .team-members__item{
@@ -49,8 +95,16 @@
   border-radius: 18px;
   transform-style: preserve-3d;
   transform: perspective(1000px);
-  
-  flex-basis: calc((100% - 40px) / 5);
+
+  flex-basis: calc((100% - 10px) / 2);
+
+  @include tab {   
+    flex-basis: calc((100% - 24px) / 3);
+  }
+
+  @include desk {
+    flex-basis: calc((100% - 40px) / 5);
+  }
 }
 
 .team-members__header {
@@ -63,17 +117,33 @@
 
 .team-members__text{
   display: block;
-  margin-top: 6px;
-  margin-bottom: 6px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.12;
   color: $second-font-color;
+
+  @include tab {
+    font-size: 16px;
+  }
+
+  @include desk {
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
 }
 
 .team-members__photo{
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
   margin: auto;
+
+  @include tab {
+    height: 120px;
+    width: 120px;
+  }
 }
 
 .social-list {
@@ -85,8 +155,13 @@
 
 .social-list__item {
   display: block;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
+
+  @include tab{
+    width: 36px;
+    height: 36px;
+  }
 }
 
 .team-members__desc {
@@ -114,15 +189,25 @@
 }
 
 .modal-team__text{
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   color: $accent-color;
   font-size: 24px;
   line-height: 1.2;
+
+  @include desk{
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
 }
 
 .modal-team__text-final{
+  padding: 0 20px;
   color: $second-font-color;
+
+  @include desk {
+    padding: 0;
+  }
 }
 
 .repo-link{

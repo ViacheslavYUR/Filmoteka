@@ -1,5 +1,22 @@
 import axios from 'axios';
 import { renderQueueMarkup } from './renderQueueMarkup';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+
+import { auth, dbRef } from '../firebase';
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue,
+  child,
+  get,
+  push,
+  update,
+} from 'firebase/database';
+
+import { onAuthStateChanged } from 'firebase/auth';
+
+export { fetchMovieByIdFromStorageQueue };
 
 const btnQueue = document.querySelector('.header_btn-queue');
 const btnWatched = document.querySelector('.header_btn-watched');
@@ -13,32 +30,33 @@ async function fetchMovieByIdFromStorageQueue() {
   btnWatched.classList.remove('current-btn');
   btnQueue.classList.add('current-btn');
 
-  savedMovies = localStorage.getItem('movieID');
-  parsedMovies = JSON.parse(savedMovies);
-  // console.log(parsedMovies);
-
   gallery.innerHTML = '';
 
-  for (let movieId of parsedMovies.queue) {
-    // console.log(
-    //   'fetchMovieByIdFromStorageWatched ~ parsedMovies.watched',
-    //   parsedMovies.watched
-    // );
-    // console.log('Here is your movies ID:', movieId);
-
-    try {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
-      );
-      // renderWatchedMarkup(data);
-      //   console.log(data);
-      renderQueueMarkup(data);
-      // запускаем функцию один раз, иначе уходит в infinity loop
-      //   fetchMovieByIdFromStorageWatched = function () {
-      //     return false;
-      //   };
-    } catch (error) {
-      console.error(error.message);
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      get(child(dbRef, `users/${user.uid}/queue`))
+        .then(snapshot => {
+          if (snapshot.exists()) {
+            const savedMovies = Object.values(snapshot.val());
+            savedMovies.forEach(element => {
+              axios
+                .get(
+                  `https://api.themoviedb.org/3/movie/${element}?api_key=${API_KEY}&language=en-US`
+                )
+                .then(({ data }) => renderQueueMarkup(data));
+            });
+          } else {
+            Report.info(
+              'No movies in collection now',
+              'Add movies to see them here'
+            );
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    } else {
+      console.log('no user');
     }
-  }
+  });
 }

@@ -1,12 +1,11 @@
-@import './backdrop';
+@import 'backdrop';
 
 .movieModal {
   position: absolute;
   display: flex;
   font-weight: 500;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   margin-top: 20px;
   width: 280px;
   min-height: 904px;
@@ -24,6 +23,8 @@
   }
 
   @media screen and (min-width: 1280px) {
+      top: 50%;
+    transform: translate(-50%, -50%);
     gap: calc($gap / 2);
     width: 806px;
     min-height: 558px;
@@ -60,6 +61,7 @@
 }
 
 .movieModal__image {
+  object-fit: contain;
   width: 240px;
   max-height: 357px;
 

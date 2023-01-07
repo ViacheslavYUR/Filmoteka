@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Filmoteka</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/tui-pagination/dist/tui-pagination.css"
+    />
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./index.js"></script>
   </head>
@@ -11,10 +15,11 @@
     <include src="./partials/header.html"></include>
     <include src="./partials/gallery.html"></include>
     <include src="./partials/modal.html"></include>
+    <include src="./partials/signInModal.html"></include>
     <include src="./partials/footer.html"></include>
     <include src="./partials/modal-team.html"></include>
 
-    <a href="#top" class="scroll-up-btn scroll-up-btn--remove">
+    <a href="#top" class="scroll-up-btn scroll-up-btn--hidden">
       <svg class="scroll-up-btn__icon" width="30" height="30">
         <use href="./images/svg/symbol-defs.svg#Vector"></use>
       </svg>

@@ -1,5 +1,13 @@
 [
     {
+        "name": "Viacheslav",
+        "position": "Team lead",
+        "photo": "https://avatars.githubusercontent.com/u/108462275?v=4",
+        "github": "https://github.com/ViacheslavYUR",
+        "mail": "viacheslav.work@gmail.com",
+        "phone": "+380978478144"
+    },
+    {
         "name": "Anastasiia",
         "position": "Scrum master",
         "photo": "https://avatars.githubusercontent.com/u/107958168?v=4",
@@ -8,75 +16,59 @@
         "phone": "+380965895346"
     },
     {
-        "name": "Stepan Bandera",
-        "position": "Daddy",
-        "photo": "",
-        "github": "https://github.com/AnastasiiaLazar",
-        "mail": "anastacialazar21@gmail.com",
-        "phone": "+380965895346"
-    },
-    {
-        "name": "Anastasiia",
+        "name": "Artur",
         "position": "Developer",
-        "photo": "",
-        "github": "https://github.com/AnastasiiaLazar",
-        "mail": "anastacialazar21@gmail.com",
-        "phone": "+380965895346"
+        "photo": "https://avatars.githubusercontent.com/u/107943545?v=4",
+        "github": "https://github.com/ArtPolguy",
+        "mail": "art.polguy@gmail.com",
+        "phone": "+380505071255"
     },
     {
-        "name": "Harry Potter",
-        "position": "Scrum master",
-        "photo": "",
-        "github": "https://github.com/AnastasiiaLazar",
-        "mail": "anastacialazar21@gmail.com",
-        "phone": "+380965895346"
+        "name": "Ivan",
+        "position": "Developer",
+        "photo": "https://avatars.githubusercontent.com/u/107186155?v=4",
+        "github": "https://github.com/CyresSmith",
+        "mail": "madnezzz5@gmail.com",
+        "phone": "+380986560225"
     },
     {
-        "name": "Anastasiia",
-        "position": "Scrum master",
-        "photo": "",
-        "github": "https://github.com/AnastasiiaLazar",
-        "mail": "anastacialazar21@gmail.com",
-        "phone": "+380965895346"
+        "name": "Maxim",
+        "position": "Developer",
+        "photo": "https://avatars.githubusercontent.com/u/107705528?v=4",
+        "github": "https://github.com/lakhmanmaxim",
+        "mail": "lakhmanmaxim@gmail.com",
+        "phone": "+380675672570"
     },
     {
-        "name": "Anastasiia",
-        "position": "Scrum master",
-        "photo": "",
-        "github": "https://github.com/AnastasiiaLazar",
-        "mail": "anastacialazar21@gmail.com",
-        "phone": "+380965895346"
+        "name": "Mykhailo",
+        "position": "Developer",
+        "photo": "https://avatars.githubusercontent.com/u/106537730?v=4",
+        "github": "https://github.com/Mihail18071983/",
+        "mail": "michle12345@ukr.net",
+        "phone": "+380988282800"
     },
     {
-        "name": "Anastasiia",
-        "position": "Scrum master",
-        "photo": "",
-        "github": "https://github.com/AnastasiiaLazar",
-        "mail": "anastacialazar21@gmail.com",
-        "phone": "+380965895346"
+        "name": "Nazar",
+        "position": "Developer",
+        "photo": "https://avatars.githubusercontent.com/u/107606351?v=4",
+        "github": "https://github.com/NazarKr",
+        "mail": "nazarok1990@gmail.com",
+        "phone": "+380983431777"
     },
     {
-        "name": "Anastasiia",
-        "position": "Scrum master",
-        "photo": "",
-        "github": "https://github.com/AnastasiiaLazar",
-        "mail": "anastacialazar21@gmail.com",
-        "phone": "+380965895346"
+        "name": "Olesia",
+        "position": "Developer",
+        "photo": "https://avatars.githubusercontent.com/u/102539948?v=4",
+        "github": "https://github.com/B1lkao",
+        "mail": "hrabousolesia@gmail.com",
+        "phone": "+380976113487"
     },
     {
-        "name": "Anastasiia",
-        "position": "Scrum master",
-        "photo": "",
-        "github": "https://github.com/AnastasiiaLazar",
-        "mail": "anastacialazar21@gmail.com",
-        "phone": "+380965895346"
-    },
-    {
-        "name": "Anastasiia",
-        "position": "Scrum master",
-        "photo": "",
-        "github": "https://github.com/AnastasiiaLazar",
-        "mail": "anastacialazar21@gmail.com",
-        "phone": "+380965895346"
+        "name": "Serhii",
+        "position": "Developer",
+        "photo": "https://avatars.githubusercontent.com/u/106482481?v=4",
+        "github": "https://github.com/Tyshchenko-Serhii",
+        "mail": "tarsel92@gmail.com",
+        "phone": "+380995507484"
     }
 ]

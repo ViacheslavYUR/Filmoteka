@@ -7,22 +7,49 @@
         </svg>
         <span class="main-logo_text">Filmoteka</span>
       </a>
-      <nav class="header-nav">
-        <ul class="header-nav_list">
-          <li><a class="header-nav_home" href="/src/index.html">Home</a></li>
-          <li>
-            <a class="header-nav_libr link-current" href="/src/my-library.html">my library</a>
-          </li>
-        </ul>
-        <button class="auth_btn header-nav_log">log in</button>
-        <button class="logOutBtn header-nav_log visually-hidden" id="logOutBtn">
-          log out
+      <ul class="navigation__list">
+        <li class="navigation__item">
+          <a class="navigation__link navigation__link--current" href="">HOME</a>
+        </li>
+        <li class="navigation__item">
+          <a class="navigation__link" href="./my-library.html">MY LIBRARY</a>
+        </li>
+      </ul>
+      <div class="user">
+        <div class="user__box"></div>
+        <button
+          class="filmoteca-btn filmoteca-btn--auth filmoteca-btn--logOut"
+          type="submit"
+          id="signInModalOpen"
+          data-signInModal-open
+        >
+          Log in / Sign Up
         </button>
-      </nav>
+
+        <button
+          class="filmoteca-btn filmoteca-btn--auth visually-hidden"
+          type="submit"
+          id="ConfirmEmail"
+        >
+          Confirm Email
+        </button>
+
+        <button
+          class="filmoteca-btn filmoteca-btn--auth filmoteca-btn--logOut visually-hidden"
+          type="submit"
+          id="logoutBtn"
+        >
+          Log Out
+        </button>
+      </div>
     </div>
     <ul class="header_btn-wrap">
-      <li class="header_btn-watched current-btn"> <button type="button">Watched</button></li>
-      <li class="header_btn-queue simple-btn"><button type="button">Queue</button></li>
+      <li>
+        <button class="header_btn-watched current-btn" type="button">
+          Watched
+        </button>
+      </li>
+      <li><button class="header_btn-queue" type="button">Queue</button></li>
     </ul>
   </div>
 </header>
