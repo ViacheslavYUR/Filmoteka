@@ -14,7 +14,6 @@ const genresTxt = genres => {
 export const renderModalMarkup = ({
   id,
   poster_path,
-  title,
   original_title,
   vote_average,
   vote_count,
@@ -39,7 +38,7 @@ export const renderModalMarkup = ({
       <div class="movieModal__wraper">
         <table class="movieModal__table">
           <caption class="movieModal__caption">
-            ${title}
+            ${original_title}
           </caption>
           <tbody>
             <tr>

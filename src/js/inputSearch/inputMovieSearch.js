@@ -2,9 +2,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import MovieApiService from './getAllMovieApi';
 import { galleryMarkupСreation } from '../showTrending/renderTrending';
 import { fetchGenres } from '../fetchGenres';
-import * as tuiPagination from '../pagination/pagination';
 
-export const movieApiService = new MovieApiService();
+const movieApiService = new MovieApiService();
 
 const refs = {
   searchMovie: document.querySelector('.searchForm'),
@@ -24,6 +23,7 @@ function handleInputSearchCondition(e) {
       'input',
       handleInputSearchCondition
     );
+    // console.log(e);
   }
 }
 
@@ -36,23 +36,17 @@ export async function handleInputSearchMovie(e) {
   }
   movieApiService.request = searchValue;
 
-  const response = await movieApiService.getMovie(tuiPagination.page);
+  const response = await movieApiService.getMovie();
   const results = response.results;
-  console.log(results)
-  tuiPagination.pagination.off(
-    'beforeMove',
-    tuiPagination.loadMoreTrendingFilms
-  );
-  tuiPagination.pagination.off(
-    'beforeMove',
-    tuiPagination.loadMoreFilmsByQuery
-  );
-  tuiPagination.pagination.on('beforeMove', tuiPagination.loadMoreFilmsByQuery);
-  tuiPagination.pagination.reset(movieApiService.totalResults);
+  // const totalResults = response.total_results;
+  // console.log(totalResults);
+  // console.log(movieApiService.request);
+  console.log(movieApiService.totalResults);
   const { genres } = await fetchGenres();
+  // console.log(genres);
 
   if (results.length === 0) {
-    tuiPagination.paginationCont.classList.add('js-hidden');
+    // console.log(results);
     Notify.info(
       'Search result not successful. Enter the correct movie name and',
       {
@@ -60,17 +54,16 @@ export async function handleInputSearchMovie(e) {
         distance: '150px',
         width: '394px',
         fontSize: '14px',
+        backOverlay: true,
       }
     );
     return;
   }
 
-   
-
   clearRender();
-
+  // console.log(movieApiService);
+  // console.log(results);
   refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
-  tuiPagination.paginationCont.classList.remove('js-hidden');
 }
 
 function clearRender() {
