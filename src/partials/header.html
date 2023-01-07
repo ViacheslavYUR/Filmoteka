@@ -19,7 +19,12 @@
     </nav>
 
     <form class="searchForm" id="search-form">
-      <input type="text" name="searchQuery" autocomplete="off" placeholder="Movie search" />
+      <input
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Movie search"
+      />
       <button type="submit" disabled="true" class="searchForm__button">
         <svg class="searchForm__icon">
           <use href="./images/svg/symbol-defs.svg#icon-search-2"></use>
@@ -29,16 +34,27 @@
     </form>
     <div class="user">
       <div class="user__box"></div>
-      <button class="filmoteca-btn filmoteca-btn--auth" type="submit" id="signInModalOpen" data-signInModal-open>
+
+      <button
+        class="filmoteca-btn filmoteca-btn--auth"
+        type="submit"
+        id="signInModalOpen"
+        data-signInModal-open
+      >
+        <svg class="filmoteca-btn--auth-icon" width="18" height="18">
+          <use href="./images/svg/symbol-defs.svg#enter"></use>
+        </svg>
         Log in / Sign Up
       </button>
 
-      <button class="filmoteca-btn filmoteca-btn--auth visually-hidden" type="submit" id="ConfirmEmail">
-        Confirm Email
-      </button>
-
-      <button class="filmoteca-btn filmoteca-btn--auth filmoteca-btn--logOut visually-hidden" type="submit"
-        id="logoutBtn">
+      <button
+        class="filmoteca-btn filmoteca-btn--auth visually-hidden"
+        type="submit"
+        id="logoutBtn"
+      >
+        <svg class="filmoteca-btn--auth-icon" width="18" height="18">
+          <use href="./images/svg/symbol-defs.svg#exit"></use>
+        </svg>
         Log Out
       </button>
     </div>

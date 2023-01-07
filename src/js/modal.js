@@ -171,7 +171,7 @@ async function onOpenModal(e) {
   });
 }
 
-function onCloseModal() {
+export function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyPress);
   refs.modal.classList.add('backdrop--hidden');
   refs.body.classList.remove('scroll-hidden');
@@ -184,14 +184,14 @@ function onCloseModal() {
   }
 }
 
-function onBackdropClick(event) {
+export function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
     // console.log('Клікнув в Backdrop!!!!');
     onCloseModal();
   }
 }
 
-function onEscKeyPress(event) {
+export function onEscKeyPress(event) {
   const ESC_KEY_CODE = 'Escape';
   const isEscKey = event.code === ESC_KEY_CODE;
 
