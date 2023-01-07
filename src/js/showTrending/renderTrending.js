@@ -85,7 +85,11 @@ export const galleryMarkupСreation = (results, genres) => {
       ({ poster_path, title, id, genre_ids, release_date = '' }) => `
       <li class="movieCard">
               <a data-id="${id}">
-                  <img class="movieCard__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
+                  <img class="movieCard__image" src="${addStubPicture(
+                    urlTemplate,
+                    poster_path,
+                    urlStub
+                  )}" alt="movieImg" />
                   <p class="movieCard__info movieCard__title">${titleSlice(
                     title
                   )}</p>
