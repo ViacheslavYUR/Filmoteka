@@ -5,21 +5,16 @@
     height: 216px;
   }
 }
-.container__header {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.header__background {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
   height: 100%;
-  padding-top: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
+  max-width: 1280px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(../images/mobile/abstract-background-with-red-lines\ 1.jpg);
+  background-image: url(../images/mobile/abstract-background-with-red-lines\ 1.jpg);
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -44,6 +39,17 @@
       background-image: url(../images/desctop/desk_header-main@2x.jpg);
     }
   }
+}
+.header__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 
   @media screen and (min-width: 768px) {
     padding-left: 30px;
@@ -106,7 +112,7 @@
 .navigation__list {
   display: flex;
   @media screen and (min-width: 768px) {
-    margin-right: 100px;
+    margin-right: 150px;
   }
 }
 

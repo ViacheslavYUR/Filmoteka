@@ -40,6 +40,8 @@
   border-radius: $border-radius;
   transition-property: fill;
   transition-duration: 250ms;
+  color: $white;
+  background-color: $accent-color;
   //   transition-timing-function: $timing-function;
 
   &--primary {
