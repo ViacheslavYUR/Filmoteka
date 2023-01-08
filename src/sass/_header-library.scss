@@ -13,18 +13,55 @@
 .header .container {
   position: relative;
   padding-top: 40px;
+  padding-bottom: 20px;
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+  //   url(../images/mobile/rectangle-mob.jpg);
+  // @include pixel-2x {
+  //   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+  //     url(../images/mobile/rectangle-mob@2x.jpg);
+  // }
+
+  // @include tab {
+  //   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+  //     url(../images/tablet/rectangle-tab.jpg);
+  //   @include pixel-2x {
+  //     background-image: linear-gradient(
+  //         rgba(0, 0, 0, 0.56),
+  //         rgba(0, 0, 0, 0.56)
+  //       ),
+  //       url(../images/tablet/rectangle-tab@2x.jpg);
+  //   }
+  // }
+  // @include desk {
+  //   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+  //     url(../images/desctop/rectangle-pc.jpg);
+  //   padding-bottom: 60px;
+
+  //   @include pixel-2x {
+  //     background-image: linear-gradient(
+  //         rgba(0, 0, 0, 0.56),
+  //         rgba(0, 0, 0, 0.56)
+  //       ),
+  //       url(../images/desctop/rectangle-pc@2x.jpg);
+  //   }
+  // }
+}
+.header-library__background {
+  margin-right: auto;
+  margin-left: auto;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(../images/mobile/rectangle-mob.jpg);
-  background-size: cover;
-  // background-position: 50% 50%;
-  background-repeat: no-repeat;
-  padding-bottom: 20px;
   @include pixel-2x {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/mobile/rectangle-mob@2x.jpg);
   }
 
-  @include tab {
+  @media screen and (min-width: 321px) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/tablet/rectangle-tab.jpg);
     @include pixel-2x {
@@ -35,11 +72,11 @@
         url(../images/tablet/rectangle-tab@2x.jpg);
     }
   }
-  @include desk {
+
+  @media screen and (min-width: 769px) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/desctop/rectangle-pc.jpg);
-    padding-bottom: 60px;
-
+    max-width: 1280px;
     @include pixel-2x {
       background-image: linear-gradient(
           rgba(0, 0, 0, 0.56),
@@ -162,60 +199,63 @@
     }
   }
 }
-.header_btn-wrap {
+.header__btn-wrap {
   display: flex;
   justify-content: center;
-}
-.header_btn-watched {
-  display: block;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-  text-transform: uppercase;
 
-  color: $white;
-  margin-right: 20px;
-  padding: 14px 37px 12px 37px;
-  cursor: pointer;
-  background-color: transparent;
+  & li:first-child {
+    margin-right: 20px;
 
-  @include tab {
-    margin-right: 32px;
-    padding: 14px 48px 12px 48px;
-  }
-  @include desk {
-    margin-right: 16px;
-    padding: 14px 46px 11px 46px;
+    @include tab {
+      margin-right: 32px;
+    }
+    @include desk {
+      margin-right: 16px;
+    }
   }
 }
+.header_btn-watched,
 .header_btn-queue {
   display: block;
+  width: 130px;
+  height: 44px;
+  align-items: center;
+  text-align: center;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
-  padding: 14px 45px 12px 45px;
-  color: $white;
-  cursor: pointer;
-  background-color: transparent;
-
-  @include tab {
-    padding: 13px 56px 13px 57px;
-  }
-  @include desk {
-    padding: 14px 54px 11px 54px;
-  }
-}
-.current-btn {
-  background-color: $accent-color;
-  font-size: 14px;
-
-  border-radius: 5px;
-}
-.simple-btn {
   border: 1px solid #ffffff;
   border-radius: 5px;
+  background-color: transparent;
+  color: $white;
+  cursor: pointer;
+  transition: scale 300ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    scale: 0.95;
+  }
+
+  @include tab {
+    width: 152px;
+  }
+  @include desk {
+    width: 148px;
+    height: 42px;
+  }
 }
+
+.current-btn {
+  background-color: $accent-color;
+  border: none;
+  border-radius: 5px;
+}
+// .simple-btn {
+//   border: 1px solid #ffffff;
+//   border-radius: 5px;
+// }
 
 // .header-nav_log {
 //   font-weight: 500;
