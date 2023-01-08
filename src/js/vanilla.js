@@ -4,7 +4,7 @@ export function setVanillaTiltAnimation() {
     const element = document.querySelectorAll('.movieCard')
     const options = {
         glare: true,
-        spead: 250,
+        speed: 2500,
     }
     
     VanillaTilt.init(element, options)
