@@ -47,7 +47,7 @@ export const cardGenres = (genre_ids, genres) => {
 
   switch (true) {
     case cardGenresArr.length > 2:
-      return `${cardGenresArr[0]}, ${cardGenresArr[1]}, other...`;
+      return `${cardGenresArr[0]}, ${cardGenresArr[1]}, other`;
 
     case cardGenresArr.length === 2:
       return `${cardGenresArr[0]}, ${cardGenresArr[1]}`;
