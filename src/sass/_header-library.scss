@@ -18,7 +18,7 @@
   background-size: 100%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  padding-bottom: 62px;
+  padding-bottom: 20px;
   @include pixel-2x {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/mobile/rectangle-mob@2x.jpg);
