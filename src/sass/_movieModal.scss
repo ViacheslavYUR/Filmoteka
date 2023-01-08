@@ -23,12 +23,12 @@
   }
 
   @media screen and (min-width: 1280px) {
-      top: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
     gap: calc($gap / 2);
     width: 806px;
     min-height: 558px;
-    padding: 40px 12px;
+    padding: 40px 20px;
   }
 }
 
@@ -147,5 +147,5 @@
 
 .movieModal__btns {
   display: flex;
-  gap: calc($gap / 2);
+  justify-content: space-between;
 }
