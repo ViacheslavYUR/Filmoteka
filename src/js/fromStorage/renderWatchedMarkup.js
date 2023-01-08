@@ -1,5 +1,6 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { fetchGenres } from '../fetchGenres';
+import { setVanillaTiltAnimation } from '../vanilla';
 
 export { renderWatchedMarkup };
 
@@ -16,6 +17,7 @@ const renderWatchedMarkup = async data => {
       'afterbegin',
       watchedGalleryMarkupСreat(data, genres)
     );
+    setVanillaTiltAnimation();
     Loading.remove();
   } catch (error) {
     console.error(error.message);

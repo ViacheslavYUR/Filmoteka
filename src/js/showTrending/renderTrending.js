@@ -3,6 +3,7 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 import { fetchTrending } from './fetchTrending';
 import { fetchGenres } from '../fetchGenres';
 import * as tuiPagination from '../pagination/pagination';
+import { setVanillaTiltAnimation } from '../vanilla';
 
 const refs = {
   searchForm: document.querySelector('.searchForm'),
@@ -20,6 +21,7 @@ export const renderMarkup = async () => {
       Loading.hourglass();
 
       refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
+      setVanillaTiltAnimation();
 
       Loading.remove();
       return;
