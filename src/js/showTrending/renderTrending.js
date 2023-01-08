@@ -33,9 +33,9 @@ export const renderMarkup = async () => {
 
 export const cardGenres = (genre_ids, genres) => {
   let cardGenresArr = [];
-  // if (genre_ids.length === 0) {
-  //   genre_ids.push(99);
-  // }
+  if (genre_ids.length === 0) {
+    return '';
+  }
 
   genre_ids.map(genre_id =>
     genres.map(genre => {
@@ -47,7 +47,7 @@ export const cardGenres = (genre_ids, genres) => {
 
   switch (true) {
     case cardGenresArr.length > 2:
-      return `${cardGenresArr[0]}, ${cardGenresArr[1]}, other...`;
+      return `${cardGenresArr[0]}, ${cardGenresArr[1]}, other`;
 
     case cardGenresArr.length === 2:
       return `${cardGenresArr[0]}, ${cardGenresArr[1]}`;

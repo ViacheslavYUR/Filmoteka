@@ -1,8 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 
-import { onBackdropClick, onEscKeyPress } from './modal';
-
 import {
   getAuth,
   onAuthStateChanged,
@@ -11,23 +9,10 @@ import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
-  sendEmailVerification,
-  // signInWithRedirect,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
   // connectAuthEmulator,
 } from 'firebase/auth';
 
-import {
-  getDatabase,
-  ref,
-  set,
-  onValue,
-  child,
-  get,
-  push,
-  update,
-} from 'firebase/database';
+import { getDatabase, ref, set, child, get, update } from 'firebase/database';
 
 // Initialize Firebase
 const firebaseApp = initializeApp({
