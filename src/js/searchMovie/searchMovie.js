@@ -1,3 +1,5 @@
+import { setVanillaTiltAnimation } from '../vanilla';
+
 const refs = {
   searchForm: document.querySelector('.searchForm'),
   searchQueryInput: document.querySelector('input[name=searchQuery]'),
@@ -39,6 +41,7 @@ const onSearchBtn = async () => {
       Notify.info(`Hooray! We found ${totalHits} images.`);
       Loading.hourglass();
       renderGalleryMarkup(totalHits, searchQuery, galleryMarkupСreation(hits));
+      setVanillaTiltAnimation();
       simpleLightboxInit();
       if (totalHits > pageLimit) {
         observeLastCard();

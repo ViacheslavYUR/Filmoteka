@@ -3,6 +3,7 @@ import MovieApiService from './getAllMovieApi';
 import { galleryMarkupСreation } from '../showTrending/renderTrending';
 import { fetchGenres } from '../fetchGenres';
 import * as tuiPagination from '../pagination/pagination';
+import { setVanillaTiltAnimation } from '../vanilla';
 
 export const movieApiService = new MovieApiService();
 
@@ -70,6 +71,7 @@ export async function handleInputSearchMovie(e) {
   clearRender();
 
   refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
+  setVanillaTiltAnimation();
   tuiPagination.paginationCont.classList.remove('js-hidden');
 }
 

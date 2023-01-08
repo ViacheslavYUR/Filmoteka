@@ -5,6 +5,7 @@ import { fetchTrending } from '../showTrending/fetchTrending';
 import { fetchGenres } from '../fetchGenres';
 import * as render from '../showTrending/renderTrending';
 import { movieApiService } from '../inputSearch/inputMovieSearch';
+import { setVanillaTiltAnimation } from '../vanilla';
 
 const PER_PAGE = 20;
 
@@ -55,6 +56,7 @@ export async function loadMoreTrendingFilms(e) {
     const { genres } = await fetchGenres();
     if (total_results > 0) {
       gallery.innerHTML = render.galleryMarkupСreation(results, genres);
+      setVanillaTiltAnimation();
       return;
     }
   } catch (err) {
@@ -74,6 +76,7 @@ export async function loadMoreFilmsByQuery(e) {
     // console.log(results);
     const { genres } = await fetchGenres();
     gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
+    setVanillaTiltAnimation();
   } catch (err) {
     Notify.failure(err.message);
     paginationCont.classList.add('js-hidden');
