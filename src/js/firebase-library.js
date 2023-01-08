@@ -168,10 +168,10 @@ const monitorAuthState = async () => {
             break;
         }
         refs.navigation.innerHTML = `<li class="navigation__item">
-          <a class="navigation__link navigation__link--current" href="./index.html">HOME</a>
+          <a class="navigation__link " href="./index.html">HOME</a>
         </li>
         <li class="navigation__item">
-          <a class="navigation__link" href="./my-library.html">MY LIBRARY</a>
+          <a class="navigation__link navigation__link--current" href="./my-library.html">MY LIBRARY</a>
         </li>`;
 
         refs.btnSignIn.classList.add('visually-hidden');

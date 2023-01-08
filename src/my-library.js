@@ -11,7 +11,7 @@ import './js/modalTeam/renderTeam';
 import './js/modalTeam/teamModal';
 import './js/vanilla';
 import './js/modal';
-import './js/firebase';
+import './js/firebase-library';
 
 smoothscroll();
 window.addEventListener('scroll', hideScrollUpBtn);
