@@ -71,12 +71,36 @@
   }
 
   &--auth {
+    display: flex;
+    width: 40px;
+    height: 40px;
     padding: 5px 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     color: $white;
     background-color: $accent-color;
+    @media screen and (min-width: 768px) {
+      justify-content: space-between;
+      width: 110px;
+    }
+    @media screen and (min-width: 1280px) {
+      padding: 10px 15px;
+      width: 120px;
+    }
     &-icon {
-      margin-right: 10px;
       fill: $white;
+      @media screen and (min-width: 768px) {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  &__text {
+    display: none;
+    @media screen and (min-width: 768px) {
+      display: block;
+      width: 60px;
     }
   }
 }
