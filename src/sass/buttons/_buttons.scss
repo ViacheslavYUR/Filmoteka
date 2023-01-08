@@ -80,6 +80,7 @@
     justify-content: center;
     color: $white;
     background-color: $accent-color;
+    transition: scale 300ms ease-in-out;
     @media screen and (min-width: 768px) {
       justify-content: space-between;
       width: 110px;
@@ -88,12 +89,21 @@
       padding: 10px 15px;
       width: 120px;
     }
+    &:hover,
+    &:focus {
+      background-color: #ff6b01f2;
+      box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+      scale: 0.97;
+    }
     &-icon {
       fill: $white;
       @media screen and (min-width: 768px) {
         width: 20px;
         height: 20px;
       }
+    }
+    &-interval {
+      margin-right: 10px;
     }
   }
   &__text {
