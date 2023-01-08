@@ -1,7 +1,14 @@
 @import './utils/mixins';
 
-.footer {
+footer {
   background-color: #f7f7f7;
+  padding-top: 29px;
+  padding-bottom: 29px;
+
+  @include tab {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }
 
 .container__footer {
@@ -9,13 +16,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 29px;
-  padding-bottom: 29px;
   height: 100%;
 
   @include tab {
-    padding-top: 30px;
-    padding-bottom: 30px;
     flex-direction: row;
   }
 }
