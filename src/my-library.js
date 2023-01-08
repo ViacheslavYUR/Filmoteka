@@ -4,13 +4,14 @@ import { smoothscroll } from './js/smoothscroll';
 import { hiddenElementsOnMobileVersion } from './js/hideElementsInMobileVersion';
 import { fetchMovieByIdFromStorageWatched } from './js/fromStorage/fetchWatchedFromStorage';
 import { fetchMovieByIdFromStorageQueue } from './js/fromStorage/fetchMovieByIdFromStorageQueue';
-import storage from './js/storage';
+// import storage from './js/storage';
 
 // import './js/pagination/pagination';
 import './js/modalTeam/renderTeam';
 import './js/modalTeam/teamModal';
 import './js/vanilla';
 import './js/modal';
+import './js/firebase';
 
 smoothscroll();
 window.addEventListener('scroll', hideScrollUpBtn);

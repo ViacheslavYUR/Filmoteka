@@ -6,6 +6,7 @@
 @import './utils/js-hidden';
 @import 'variables';
 @import 'scaffolding';
+@import './buttons/buttons';
 @import 'header-library';
 @import 'gallery';
 @import 'movieCard';
@@ -13,4 +14,5 @@
 @import 'footer';
 @import 'modal-team';
 @import 'movieModal';
-@import './buttons/buttons';
+@import 'user';
+@import 'signInModal';
