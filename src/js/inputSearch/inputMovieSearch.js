@@ -39,7 +39,7 @@ export async function handleInputSearchMovie(e) {
 
   const response = await movieApiService.getMovie(tuiPagination.page);
   const results = response.results;
-  console.log(results)
+
   tuiPagination.pagination.off(
     'beforeMove',
     tuiPagination.loadMoreTrendingFilms
@@ -52,21 +52,47 @@ export async function handleInputSearchMovie(e) {
   tuiPagination.pagination.reset(movieApiService.totalResults);
   const { genres } = await fetchGenres();
 
-  if (results.length === 0) {
+  if (results.length === 0 && window.screen.width > 511) {
     tuiPagination.paginationCont.classList.add('js-hidden');
-    Notify.info(
-      'Search result not successful. Enter the correct movie name and',
-      {
-        position: 'center-top',
-        distance: '150px',
-        width: '394px',
-        fontSize: '14px',
-      }
-    );
+    Notify.info('Search result not successful. Enter the correct movie name', {
+      position: 'center-top',
+      distance: '147px',
+      width: '250px',
+      fontSize: '14px',
+      timeout: 1500,
+      showOnlyTheLastOne: true,
+      backOverlay: false,
+      info: {
+        background: '#ff6b01',
+        textColor: '#fff',
+        childClassName: 'notiflix-notify-info',
+        notiflixIconColor: 'rgba(0,0,0,0.2)',
+        fontAwesomeClassName: 'fas fa-info-circle',
+        fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+        backOverlayColor: 'rgba(38,192,211,0.2)',
+      },
+    });
     return;
+  } else if (results.length === 0 && window.screen.width > 511) {
+    tuiPagination.paginationCont.classList.add('js-hidden');
+    Notify.info('Search result not successful. Enter the correct movie name', {
+      position: 'right-top',
+      width: '250px',
+      fontSize: '14px',
+      timeout: 1500,
+      showOnlyTheLastOne: true,
+      backOverlay: false,
+      info: {
+        background: '#ff6b01',
+        textColor: '#fff',
+        childClassName: 'notiflix-notify-info',
+        notiflixIconColor: 'rgba(0,0,0,0.2)',
+        fontAwesomeClassName: 'fas fa-info-circle',
+        fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+        backOverlayColor: 'rgba(38,192,211,0.2)',
+      },
+    });
   }
-
-   
 
   clearRender();
 

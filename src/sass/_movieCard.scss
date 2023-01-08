@@ -55,11 +55,26 @@
     line-height: 1.2;
   }
 }
-
+.movieCard_info-wrapper {
+  display: flex;
+}
 .movieCard__title {
   text-transform: uppercase;
 }
 
 .movieCard__description {
   color: $accent-color;
+  margin-right: 20px;
+}
+.vote_rating {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  background-color: $accent-color;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 5px;
+  color: #fff;
 }
