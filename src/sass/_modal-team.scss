@@ -1,9 +1,5 @@
 @import './utils/mixins';
 
-.scroll-hidden {
-  overflow: hidden;
-}
-
 /* backdrop для модалки з комадою */
 .backdrop-team {
   padding-top: 92px;
@@ -68,7 +64,6 @@
 
 .team-members__wrapper{
   margin-top: 8px;
-  transform: translateZ(30px);
 }
 
 .team-members__list{
@@ -93,8 +88,6 @@
   padding: 8px 8px;
   background: linear-gradient(50deg, #f1f1ee, #f3a87c);
   border-radius: 18px;
-  transform-style: preserve-3d;
-  transform: perspective(1000px);
 
   flex-basis: calc((100% - 10px) / 2);
 
