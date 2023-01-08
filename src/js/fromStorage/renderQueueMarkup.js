@@ -22,19 +22,38 @@ const renderQueueMarkup = async data => {
   }
 };
 
+function addStubPicture(urlTemplate, poster_path, urlStub) {
+  if (poster_path !== null) {
+    return urlTemplate + poster_path;
+  } else {
+    return urlStub;
+  }
+}
+
 const queueGalleryMarkupСreat = (data, genres) => {
+  const urlStub =
+    'http://www.posterterritory.com/wp-content/uploads/2022/02/Nikodem-Pre%CC%A8gowski-717x1024.jpeg';
+  const urlTemplate = 'https://image.tmdb.org/t/p/w500';
   const markup = `
       <li class="movieCard">
               <a data-id="${data.id}">
-                  <img class="movieCard__image" src="https://image.tmdb.org/t/p/w500${
-                    data.poster_path
-                  }" alt="movieImg" />
+                  <img class="movieCard__image" src="${addStubPicture(
+                    urlTemplate,
+                    data.poster_path,
+                    urlStub
+                  )}" alt="movieImg" />
                   <p class="movieCard__info movieCard__title">${titleSlice(
                     data.title
-                  )}</p>
-                      <p class="movieCard__info movieCard__description">${cardGenres(
-                        genres
-                      )} | ${data.release_date.slice(0, 4)}</p>
+                  )}
+                  <div class="movieCard_info-wrapper">
+                    <p class="movieCard__info movieCard__description">${cardGenres(
+                      genres
+                    )} | ${data.release_date.slice(0, 4)}
+                    </p>
+                    <p class="movieCard__info vote_rating">${data.vote_average.toFixed(
+                      1
+                    )}</p>
+                  </div>
               </a>
       </li>
     `;
@@ -59,7 +78,7 @@ const cardGenres = genres => {
 
   switch (true) {
     case cardGenresArr.length > 2:
-      return `${cardGenresArr[0]}, ${cardGenresArr[1]}, other...`;
+      return `${cardGenresArr[0]}, ${cardGenresArr[1]}, other`;
 
     case cardGenresArr.length === 2:
       return `${cardGenresArr[0]}, ${cardGenresArr[1]}`;
