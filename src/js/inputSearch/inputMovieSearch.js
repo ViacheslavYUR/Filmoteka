@@ -72,7 +72,7 @@ export async function handleInputSearchMovie(e) {
       },
     });
     return;
-  } else {
+  } else if (results.length === 0 && window.screen.width > 511) {
     tuiPagination.paginationCont.classList.add('js-hidden');
     Notify.info('Search result not successful. Enter the correct movie name', {
       position: 'right-top',
