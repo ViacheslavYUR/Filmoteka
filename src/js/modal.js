@@ -5,6 +5,7 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fetchMovieByIdFromStorageWatched } from './fromStorage/fetchWatchedFromStorage';
 import { fetchMovieByIdFromStorageQueue } from './fromStorage/fetchMovieByIdFromStorageQueue';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 import { child, get } from 'firebase/database';
 
@@ -16,6 +17,10 @@ import {
   auth,
   dbRef,
 } from './firebase';
+
+const options = {
+  reserveScrollBarGap: true,
+};
 
 const refs = {
   openModalBtn: document.querySelector('[data-modal-open]'),
@@ -30,6 +35,7 @@ refs.openModalBtn.addEventListener('click', onOpenModal);
 refs.modal.addEventListener('click', onBackdropClick);
 
 async function onOpenModal(e) {
+  disableBodyScroll(refs.modal, options);
   e.preventDefault();
 
   let id;
@@ -160,8 +166,11 @@ export function onCloseModal() {
   refs.body.classList.remove('scroll-hidden');
 
   document.querySelector('.movieModal__info').innerHTML = '';
-
-  if (window.location.pathname === '/my-library.html') {
+  enableBodyScroll(refs.modal);
+  if (
+    window.location.href ===
+    'https://viacheslavyur.github.io/Filmoteka/my-library.html'
+  ) {
     refs.gallery.innerHTML = '';
 
     const btnQueue = document.querySelector('.header_btn-queue');
