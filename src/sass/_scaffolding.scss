@@ -50,3 +50,9 @@ body {
     padding-bottom: 60px;
   }
 }
+
+.page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}

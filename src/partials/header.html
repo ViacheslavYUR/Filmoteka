@@ -11,52 +11,37 @@
         </a>
         <ul class="navigation__list">
           <li class="navigation__item">
-            <a class="navigation__link navigation__link--current" href="">HOME</a>
+            <a class="navigation__link navigation__link--current" href="./index.html">HOME</a>
           </li>
           <li class="navigation__item">
             <a class="navigation__link" href="./my-library.html">MY LIBRARY</a>
           </li>
         </ul>
       </nav>
-    <form class="searchForm" id="search-form">
-      <input
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Movie search"
-      />
-      <button type="submit" disabled="true" class="searchForm__button">
-        <svg class="searchForm__icon">
-          <use href="./images/svg/symbol-defs.svg#icon-search-2"></use>
-        </svg>
-        <!-- <img class="searchForm__icon" src="./images/svg/search 2.svg" alt="Filmoteka logo" /> -->
-      </button>
-    </form>
-    <div class="user">
-      <div class="user__box"></div>
+      <form class="searchForm" id="search-form">
+        <input type="text" name="searchQuery" autocomplete="off" placeholder="Movie search" />
+        <button type="submit" disabled="true" class="searchForm__button">
+          <svg class="searchForm__icon">
+            <use href="./images/svg/symbol-defs.svg#icon-search-2"></use>
+          </svg>
+        </button>
+      </form>
+      <div class="user">
+        <div class="user__box"></div>
 
-      <button
-        class="filmoteca-btn filmoteca-btn--auth"
-        type="submit"
-        id="signInModalOpen"
-        data-signInModal-open
-      >
-        <svg class="filmoteca-btn--auth-icon" width="18" height="18">
-          <use href="./images/svg/symbol-defs.svg#enter"></use>
-        </svg>
-        Log in / Sign Up
-      </button>
+        <button class="filmoteca-btn filmoteca-btn--auth" type="submit" id="signInModalOpen" data-signInModal-open>
+          <svg class="filmoteca-btn--auth-icon" width="18" height="18">
+            <use href="./images/svg/symbol-defs.svg#enter"></use>
+          </svg>
+          Log in / Sign Up
+        </button>
 
-      <button
-        class="filmoteca-btn filmoteca-btn--auth visually-hidden"
-        type="submit"
-        id="logoutBtn"
-      >
-        <svg class="filmoteca-btn--auth-icon" width="18" height="18">
-          <use href="./images/svg/symbol-defs.svg#exit"></use>
-        </svg>
-        Log Out
-      </button>
+        <button class="filmoteca-btn filmoteca-btn--auth visually-hidden" type="submit" id="logoutBtn">
+          <svg class="filmoteca-btn--auth-icon" width="18" height="18">
+            <use href="./images/svg/symbol-defs.svg#exit"></use>
+          </svg>
+          Log Out
+        </button>
+      </div>
     </div>
-  </div>
 </header>

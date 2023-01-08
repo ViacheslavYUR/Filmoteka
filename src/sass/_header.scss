@@ -14,29 +14,41 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(../images/mobile/abstract-background-with-red-lines\ 1.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(../images/mobile/abstract-background-with-red-lines\ 1.jpg);
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url(../images/mobile/mob_header-main@2x.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/mobile/mob_header-main@2x.jpg);
   }
 
   @media screen and (min-width: 768px) {
-    background-image: url(../images/tablet/tab_header-main.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/tablet/tab_header-main.jpg);
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/tablet/tab_header-main@2x.jpg);
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/tablet/tab_header-main@2x.jpg);
     }
   }
 
   @media screen and (min-width: 1280px) {
-    background-image: url(../images/desctop/desk_header-main.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/desctop/desk_header-main.jpg);
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/desctop/desk_header-main@2x.jpg);
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/desctop/desk_header-main@2x.jpg);
     }
   }
 }
@@ -47,13 +59,13 @@
   justify-content: space-between;
   height: 100%;
   padding-top: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
+  // padding-left: 20px;
+  // padding-right: 20px;
   padding-bottom: 20px;
 
   @media screen and (min-width: 768px) {
-    padding-left: 30px;
-    padding-right: 30px;
+    // padding-left: 30px;
+    // padding-right: 30px;
     padding-bottom: 40px;
     justify-content: normal;
   }
@@ -64,9 +76,7 @@
   justify-content: space-between;
   align-items: center;
   color: $white;
-  // margin-bottom: 50px;
   @media screen and (min-width: 768px) {
-    // justify-content: flex-start;
     margin-bottom: 40px;
   }
 }

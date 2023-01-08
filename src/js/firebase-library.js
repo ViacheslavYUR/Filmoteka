@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 
+import { onBackdropClick, onEscKeyPress } from './modal';
+
 import {
   getAuth,
   onAuthStateChanged,
@@ -9,10 +11,23 @@ import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
+  sendEmailVerification,
+  // signInWithRedirect,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
   // connectAuthEmulator,
 } from 'firebase/auth';
 
-import { getDatabase, ref, set, child, get, update } from 'firebase/database';
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue,
+  child,
+  get,
+  push,
+  update,
+} from 'firebase/database';
 
 // Initialize Firebase
 const firebaseApp = initializeApp({
@@ -153,10 +168,10 @@ const monitorAuthState = async () => {
             break;
         }
         refs.navigation.innerHTML = `<li class="navigation__item">
-          <a class="navigation__link navigation__link--current" href="./index.html">HOME</a>
+          <a class="navigation__link " href="./index.html">HOME</a>
         </li>
         <li class="navigation__item">
-          <a class="navigation__link" href="./my-library.html">MY LIBRARY</a>
+          <a class="navigation__link navigation__link--current" href="./my-library.html">MY LIBRARY</a>
         </li>`;
 
         refs.btnSignIn.classList.add('visually-hidden');
