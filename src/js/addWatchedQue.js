@@ -29,3 +29,4 @@ const setMoviesToLS = (type, data) => {
 const getMoviesFromLS = type => {
   return JSON.parse(localStorage.getItem(type));
 };
+///////
