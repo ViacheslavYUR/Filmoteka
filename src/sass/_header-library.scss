@@ -113,7 +113,11 @@
   align-items: center;
   color: $white;
   @media screen and (min-width: 768px) {
+    max-width: 520px;
     margin-bottom: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 970px;
   }
 }
 
@@ -159,9 +163,6 @@
 
 .navigation__list {
   display: flex;
-  @media screen and (min-width: 768px) {
-    margin-right: 150px;
-  }
 }
 
 .navigation__item {
