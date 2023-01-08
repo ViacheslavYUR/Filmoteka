@@ -1,8 +1,3 @@
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
-import { Report } from 'notiflix/build/notiflix-report-aio';
-import { ifModalNotHidden } from '../storage';
-import { dataStorage } from '../storage';
-
 const refs = {
   movieModal: document.querySelector('.movieModal__info'),
 };
@@ -22,18 +17,6 @@ export const renderModalMarkup = ({
   genres,
   overview,
 }) => {
-  if (localStorage.getItem('movieID') === null) {
-    localStorage.setItem('movieID', JSON.stringify(dataStorage));
-  }
-  const localMovies = localStorage.getItem('movieID');
-  const parsedLocalMovies = JSON.parse(localMovies);
-  const queueText = parsedLocalMovies.queue.includes(String(id))
-    ? 'Remove from Queue'
-    : 'Add to Queue';
-  const watchedText = parsedLocalMovies.watched.includes(String(id))
-    ? 'Remove from Watched'
-    : 'Add to Watched';
-
   const markup = `
     <img class="movieModal__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movieImg" />
       <div class="movieModal__wraper">
@@ -81,14 +64,13 @@ export const renderModalMarkup = ({
         </div>
         <div class="movieModal__btns">
           <button class="filmoteca-btn filmoteca-btn--secondary" type="button" data-id="${id}" id="addToWatchedBtn">
-            ${watchedText}
+            Add to watched
           </button>
           <button class="filmoteca-btn filmoteca-btn--secondary" type="button" data-id="${id}" id="addToQueueBtn">
-            ${queueText}
+            Add to queue
           </button>
         </div>
       </div>
     `;
   document.querySelector('.movieModal__info').innerHTML = markup;
-  ifModalNotHidden();
 };

@@ -3,19 +3,10 @@ import { renderModalMarkup } from './showMovieCardModal/renderMovieCardModal';
 import { onAuthStateChanged } from 'firebase/auth';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { fetchMovieByIdFromStorageWatched } from './fromStorage/fetchWatchedFromStorage';
-// import { fetchMovieByIdFromStorageQueue } from './fromStorage/fetchMovieByIdFromStorageQueue';
+import { fetchMovieByIdFromStorageWatched } from './fromStorage/fetchWatchedFromStorage';
+import { fetchMovieByIdFromStorageQueue } from './fromStorage/fetchMovieByIdFromStorageQueue';
 
-import {
-  getDatabase,
-  ref,
-  set,
-  onValue,
-  child,
-  get,
-  push,
-  update,
-} from 'firebase/database';
+import { child, get } from 'firebase/database';
 
 import {
   onAddToWatchedBtnClick,
@@ -32,6 +23,7 @@ const refs = {
   modal: document.querySelector('[data-modal]'),
   headerBtnQueue: document.querySelector('header_btn-queue'),
   body: document.querySelector('body'),
+  gallery: document.querySelector('.gallery'),
 };
 
 refs.openModalBtn.addEventListener('click', onOpenModal);
@@ -78,7 +70,6 @@ async function onOpenModal(e) {
         .then(snapshot => {
           if (snapshot.exists()) {
             if (Object.values(snapshot.val()).includes(id)) {
-              // console.log(snapshot.val());
               btnWatched.textContent = 'Remove from Watched';
               btnWatched.classList.remove('filmoteca-btn--secondary');
               btnWatched.classList.add('filmoteca-btn--primary');
@@ -114,24 +105,20 @@ async function onOpenModal(e) {
   btnWatched.addEventListener('click', () => {
     if (btnWatched.classList.contains('filmoteca-btn--secondary')) {
       onAddToWatchedBtnClick(id);
-
-      // if (window.location.pathname === '/my-library.html') {
-      //   fetchMovieByIdFromStorageWatched();
-      // }
-
-      Notify.success('Added to watched in Your library');
+      Notify.success('Added to watched in Your library', {
+        position: 'right-bottom',
+        timeout: 2000,
+      });
       btnWatched.textContent = 'Remove from Watched';
       btnWatched.classList.remove('filmoteca-btn--secondary');
       btnWatched.classList.add('filmoteca-btn--primary');
       btnWatched.blur();
     } else {
       onRemoveFromWatchedBtnClick(id);
-
-      // if (window.location.pathname === '/my-library.html') {
-      //   fetchMovieByIdFromStorageWatched();
-      // }
-
-      Notify.warning('Removed from watched in Your library!');
+      Notify.warning('Removed from watched in Your library!', {
+        position: 'right-bottom',
+        timeout: 2000,
+      });
       btnWatched.textContent = 'Add to Watched';
       btnWatched.classList.add('filmoteca-btn--secondary');
       btnWatched.classList.remove('filmoteca-btn--primary');
@@ -144,24 +131,20 @@ async function onOpenModal(e) {
   btnQueue.addEventListener('click', () => {
     if (btnQueue.classList.contains('filmoteca-btn--secondary')) {
       onAddToQueueBtnClick(id);
-
-      // if (window.location.pathname === '/my-library.html') {
-      //   fetchMovieByIdFromStorageQueue();
-      // }
-
-      Notify.success('Added to queue in Your library');
+      Notify.success('Added to queue in Your library', {
+        position: 'right-bottom',
+        timeout: 2000,
+      });
       btnQueue.textContent = 'Remove from Queue';
       btnQueue.classList.remove('filmoteca-btn--secondary');
       btnQueue.classList.add('filmoteca-btn--primary');
       btnQueue.blur();
     } else {
       onRemoveFromQueueBtnClick(id);
-
-      // if (window.location.pathname === '/my-library.html') {
-      //   fetchMovieByIdFromStorageQueue();
-      // }
-
-      Notify.warning('Removed from queue in Your library!');
+      Notify.warning('Removed from queue in Your library!', {
+        position: 'right-bottom',
+        timeout: 2000,
+      });
       btnQueue.textContent = 'Add to Queue';
       btnQueue.classList.add('filmoteca-btn--secondary');
       btnQueue.classList.remove('filmoteca-btn--primary');
@@ -177,16 +160,25 @@ export function onCloseModal() {
   refs.body.classList.remove('scroll-hidden');
 
   document.querySelector('.movieModal__info').innerHTML = '';
-  // console.log('Клікнув в close!!!!');
 
   if (window.location.pathname === '/my-library.html') {
-    window.location.reload();
+    refs.gallery.innerHTML = '';
+
+    const btnQueue = document.querySelector('.header_btn-queue');
+    const btnWatched = document.querySelector('.header_btn-watched');
+
+    if (btnWatched.classList.contains('current-btn')) {
+      fetchMovieByIdFromStorageWatched();
+    }
+
+    if (btnQueue.classList.contains('current-btn')) {
+      fetchMovieByIdFromStorageQueue();
+    }
   }
 }
 
 export function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
-    // console.log('Клікнув в Backdrop!!!!');
     onCloseModal();
   }
 }
@@ -198,5 +190,4 @@ export function onEscKeyPress(event) {
   if (isEscKey) {
     onCloseModal();
   }
-  // console.log('Нажав в ESC_KEY_CODE!!!!');
 }
