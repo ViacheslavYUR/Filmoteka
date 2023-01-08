@@ -1,6 +1,5 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
-
 (() => {
   const refs = {
     openModalBtn: document.querySelector('[data-team-modal-open]'),
@@ -11,15 +10,15 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
   refs.openModalBtn.addEventListener('click', openModal);
   refs.closeModalBtn.addEventListener('click', closeModal);
-  
+
   const options = {
     reserveScrollBarGap: true,
-  }
-  
+  };
+
   function openModal(e) {
     e.preventDefault();
-    disableBodyScroll(refs.modal, options);  
-    
+    disableBodyScroll(refs.modal, options);
+
     refs.modal.classList.remove('backdrop--hidden');
     window.addEventListener('keydown', closeModalOnEsc);
     refs.modal.addEventListener('click', closeModalOnGreyZoneClick);
@@ -40,7 +39,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
   function closeModalOnGreyZoneClick(e) {
     if (e.target === e.currentTarget) {
-      closeModal();      
+      closeModal();
     }
   }
 })();
