@@ -64,6 +64,7 @@
   object-fit: cover;
   width: 240px;
   max-height: 357px;
+  margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
     width: 264px;
@@ -73,6 +74,7 @@
   @media screen and (min-width: 1280px) {
     width: 375px;
     max-height: 478px;
+    margin-bottom: 0px;
   }
 }
 
