@@ -77,6 +77,7 @@ export async function handleInputSearchMovie(e) {
         backOverlayColor: 'rgba(38,192,211,0.2)',
       },
     });
+    return;
   } else if (results.length === 0) {
     Notify.info('Search result not successful. Enter the correct movie name', {
       position: 'right-top',
@@ -95,6 +96,7 @@ export async function handleInputSearchMovie(e) {
         backOverlayColor: 'rgba(38,192,211,0.2)',
       },
     });
+    return;
   }
   clearRender();
 
