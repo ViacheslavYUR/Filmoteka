@@ -20,11 +20,9 @@
 .tui-custom {
   font-size: $font-size;
   text-decoration: none;
-  // width: 40px;
   display: flex;
   font-weight: 500;
   line-height: 1.25;
-  // height: 40px;
   color: $first-font-color;
   background-color: $white;
   border: none;
@@ -85,4 +83,10 @@
 
 .tui-pagination .tui-last-child {
   border: none;
+}
+
+.tui-pagination--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
