@@ -29,6 +29,7 @@
     width: 806px;
     min-height: 558px;
     padding: 40px 20px;
+    margin-top: 0px;
   }
 }
 
@@ -70,12 +71,12 @@
   @media screen and (min-width: 768px) {
     width: 264px;
     max-height: 374px;
+    margin-bottom: 0px;
   }
 
   @media screen and (min-width: 1280px) {
     width: 375px;
     max-height: 478px;
-    margin-bottom: 0px;
   }
 }
 
