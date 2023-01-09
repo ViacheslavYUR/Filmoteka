@@ -11,7 +11,6 @@ const fetchTrending = async (page = 1) => {
   let searchParams = new URLSearchParams({
     api_key: 'ac91775ba29254b7e75060011bf34a90',
     page: `${page}`,
-    // per_page: 40,
   });
 
   try {
@@ -25,4 +24,3 @@ const fetchTrending = async (page = 1) => {
   }
 };
 
-// console.log(fetchTrending());

@@ -22,7 +22,7 @@ export const renderMarkup = async () => {
 
       refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
       setVanillaTiltAnimation();
-
+      tuiPagination.paginationCont.classList.remove('tui-pagination--hidden')
       Loading.remove();
       return;
     }

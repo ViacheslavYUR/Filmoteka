@@ -72,7 +72,7 @@ export async function handleInputSearchMovie(e) {
         backOverlayColor: 'rgba(38,192,211,0.2)',
       },
     });
-    // return;
+    return;
   } else if (results.length === 0 && window.screen.width > 511) {
     tuiPagination.paginationCont.classList.add('tui-pagination--hidden');
     Notify.info('Search result not successful. Enter the correct movie name', {
@@ -97,12 +97,13 @@ export async function handleInputSearchMovie(e) {
     movieApiService.totalResults <= 20
   ) {
     tuiPagination.paginationCont.classList.add('tui-pagination--hidden');
+    return
   }
   clearRender();
 
   refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
   setVanillaTiltAnimation();
-  // tuiPagination.paginationCont.classList.remove('tui-pagination--hidden');
+  tuiPagination.paginationCont.classList.remove('tui-pagination--hidden');
 }
 
 function clearRender() {

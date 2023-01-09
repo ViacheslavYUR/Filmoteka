@@ -1,5 +1,4 @@
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
 import { Loading, Notify } from 'notiflix';
 import { fetchTrending } from '../showTrending/fetchTrending';
 import { fetchGenres } from '../fetchGenres';
@@ -62,7 +61,7 @@ export async function loadMoreTrendingFilms(e) {
     }
   } catch (err) {
     Notify.failure(err.message);
-    // paginationCont.classList.add('tui-pagination--hidden');
+    paginationCont.classList.add('tui-pagination--hidden');
   } finally {
     Loading.remove();
     window.scroll(0, 0);
@@ -77,9 +76,9 @@ export async function loadMoreFilmsByQuery(e) {
     const { genres } = await fetchGenres();
     gallery.innerHTML = await render.galleryMarkupСreation(results, genres);
     setVanillaTiltAnimation();
+    paginationCont.classList.remove('tui-pagination--hidden')
   } catch (err) {
     Notify.failure(err.message);
-    // paginationCont.classList.add('tui-pagination--hidden');
   } finally {
     Loading.remove();
     window.scroll(0, 0);
