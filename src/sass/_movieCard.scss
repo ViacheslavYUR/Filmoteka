@@ -64,17 +64,30 @@
 
 .movieCard__description {
   color: $accent-color;
-  margin-right: 20px;
+  margin-right: 8px;
+
+  @media screen and (min-width: 1280px) {
+    margin-right: 20px;
+  }
 }
 .vote_rating {
   font-size: 12px;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.1;
   background-color: $accent-color;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 9px;
+  padding-right: 9px;
   border-radius: 5px;
   color: #fff;
+
+  @media screen and (min-width: 1280px) {
+    line-height: 1.5;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 5px;
+  }
 }
