@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filmoteka</title>
+    <link rel="stylesheet" href="./sass/my-library.scss" />
+    <script type="module" src="./my-library.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filmoteka</title>
-  <link rel="stylesheet" href="./sass/my-library.scss" />
-  <script type="module" src="./my-library.js"></script>
-</head>
+  <body>
+    <div class="page">
+      <include src="./partials/header-library.html"></include>
+      <include src="./partials/gallery.html"></include>
+      <include src="./partials/modal.html"></include>
+      <include src="./partials/footer.html"></include>
+      <include src="./partials/modal-team.html"></include>
+      <include src="./partials/signInModal.html"></include>
+    </div>
 
-<body>
-  <div class="page">
-    <include src="./partials/header-library.html"></include>
-    <include src="./partials/gallery.html"></include>
-    <include src="./partials/modal.html"></include>
-    <include src="./partials/footer.html"></include>
-    <include src="./partials/modal-team.html"></include>
-    <include src="./partials/signInModal.html"></include>
-  </div>
-
-  <a href="#top" class="scroll-up-btn scroll-up-btn--remove">
-    <svg class="scroll-up-btn__icon" width="30" height="30">
-      <use href="./images/svg/symbol-defs.svg#Vector"></use>
-    </svg>
-  </a>
-</body>
-
+    <a href="#top" class="scroll-up-btn scroll-up-btn--hidden">
+      <svg class="scroll-up-btn__icon" width="30" height="30">
+        <use href="./images/svg/symbol-defs.svg#Vector"></use>
+      </svg>
+    </a>
+  </body>
 </html>
