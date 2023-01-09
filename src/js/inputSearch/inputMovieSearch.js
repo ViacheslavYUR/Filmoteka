@@ -58,7 +58,7 @@ export async function handleInputSearchMovie(e) {
     tuiPagination.paginationCont.classList.remove('tui-pagination--hidden');
   }
 
-  if (results.length === 0) {
+  if (results.length === 0 && window.screen.width > 511) {
     Notify.info('Search result not successful. Enter the correct movie name', {
       position: 'center-top',
       distance: '147px',
@@ -77,8 +77,7 @@ export async function handleInputSearchMovie(e) {
         backOverlayColor: 'rgba(38,192,211,0.2)',
       },
     });
-    return;
-  } else if (results.length === 0 && window.screen.width > 511) {
+  } else if (results.length === 0) {
     Notify.info('Search result not successful. Enter the correct movie name', {
       position: 'right-top',
       width: '250px',
