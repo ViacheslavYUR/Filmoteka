@@ -52,8 +52,8 @@ export async function handleInputSearchMovie(e) {
   tuiPagination.pagination.reset(movieApiService.totalResults);
   const { genres } = await fetchGenres();
 
-  if (results.length === 0 && window.screen.width > 511) {
-    tuiPagination.paginationCont.classList.add('js-hidden');
+  if (results.length === 0) {
+    tuiPagination.paginationCont.classList.add('tui-pagination--hidden');
     Notify.info('Search result not successful. Enter the correct movie name', {
       position: 'center-top',
       distance: '147px',
@@ -74,7 +74,7 @@ export async function handleInputSearchMovie(e) {
     });
     return;
   } else if (results.length === 0 && window.screen.width > 511) {
-    tuiPagination.paginationCont.classList.add('js-hidden');
+    tuiPagination.paginationCont.classList.add('tui-pagination--hidden');
     Notify.info('Search result not successful. Enter the correct movie name', {
       position: 'right-top',
       width: '250px',
@@ -92,13 +92,18 @@ export async function handleInputSearchMovie(e) {
         backOverlayColor: 'rgba(38,192,211,0.2)',
       },
     });
+  } else if (
+    movieApiService.totalResults > 0 &&
+    movieApiService.totalResults <= 20
+  ) {
+    tuiPagination.paginationCont.classList.add('tui-pagination--hidden');
+    return
   }
-
   clearRender();
 
   refs.gallery.innerHTML = galleryMarkupСreation(results, genres);
   setVanillaTiltAnimation();
-  tuiPagination.paginationCont.classList.remove('js-hidden');
+  tuiPagination.paginationCont.classList.remove('tui-pagination--hidden');
 }
 
 function clearRender() {
